@@ -6,7 +6,8 @@
 
 // Représente ce qui forme un système physique
 
-class Systeme : public Dessinable 
+class Systeme : public Dessinable
+
 {
 	
 public :
@@ -17,6 +18,7 @@ Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
 
 // Destructeur de la classe : delete chaque attributs car ce sont des pointeurs
 ~Systeme() 
+
 { 
 	delete ptr_champs;
 	delete ptr_ciel;
@@ -25,19 +27,24 @@ Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
 
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
+// Fait appel aux méthodes affiche() des différents composants du système
 virtual void affiche ();
+
+// Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
 virtual void demarre ();
+
 virtual void dessine_sur() override;
 
-
 private : 
+
+// Fait évoluer le système (surtout nuage?)
+virtual void evolue ();
 
 //--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 
 ChampsPotentiels* ptr_champs;
 Ciel* ptr_ciel;
 Montagne* ptr_hill;
-virtual void evolue ();
 
 //--------------------------------------------------------------OPERATEUR-------------------------------------------------------------//
 

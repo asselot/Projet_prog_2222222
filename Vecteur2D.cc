@@ -9,8 +9,7 @@ using namespace std;
 
 bool Vecteur2D:: operator == (Vecteur2D const& V) const
 {
-	return ((coord_x == V.coord_x) && (coord_y == V.coord_y));
-	//return not((abs(coord_x - V.coord_x) > 10e-6) or (abs(coord_y - V.coord_y) > 10e-6) or (abs(coord_z - V.coord_z) > 10e-6));
+	return not((abs(coord_x - V.coord_x) > 10e-6) or (abs(coord_y - V.coord_y) > 10e-6) or (abs(coord_z - V.coord_z) > 10e-6));
 }
 
 // - opérateur interne - Retourne l'addition au vecteur du vecteur "V"   

@@ -33,6 +33,7 @@ virtual void affiche ();
 // Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
 virtual void demarre ();
 
+// Méthode dessine_sur() héritée de Dessinable
 virtual void dessine_sur() override;
 
 private : 

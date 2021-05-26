@@ -1,5 +1,8 @@
 # include <iostream>
 # include "SupportADessin"
+# include "Montagne.h"
+# include "Ciel.h"
+# include "ChampsPotentiels"
 
 // afficher les différents composants de Systeme, Montagne et Ciel en fonction des méthodes affiche() de chacun
 

@@ -17,7 +17,7 @@ Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
 : ptr_champs(*Ch), ptr_ciel(*C), ptr_hill(*M) {}
 
 // Destructeur de la classe : delete chaque attributs car ce sont des pointeurs
-~Systeme() 
+~Systeme() {}
 
 { 
 	delete ptr_champs;

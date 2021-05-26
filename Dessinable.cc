@@ -1,4 +1,10 @@
 #include <iostream>
 #include "Dessinable.h"
+#include "SupportADessin.h"
 
-Dessinable::Dessinable(SupportADessin& supp) : support(&supp) {}
+// Constructeurs des classes Dessinable et SupportADessin
+
+Dessinable :: Dessinable(SupportADessin& a_dessiner) : support(&a_dessiner) {}
+
+SupportADessin :: SupportADessin() {} // Ne fait rien car aucun attribut
+

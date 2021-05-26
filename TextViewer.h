@@ -2,19 +2,25 @@ pragma once
 # include <iostream>
 # include "SupportADessin"
 
-// Classe qui va permettre d'afficher en mode texte Systeme, Montagne et Ciel. C'est donc un support à dessin
+//La classe Terminal indique que l'on souhaite afficher la simulation sous forme textuelle sur le terminal
 // Va afficher les différentes composantes de Systeme, Montagne et Ciel en fonction des méthodes affiche() de chacun
 
 class TextViewer : public SupportADessin
 
 {
-virtual void dessine(Systeme const&);
-virtual void dessine(Montagne const&);
-virtual void dessine(Ciel const&); 	
-	
-private :
 
-std :: ostream& flot; 
+public : 
+
+//Constructeur de classe
+TextViewer (std::ostream& sortie);
+		
+virtual void dessine(Systeme const& a_dessiner) const;
+virtual void dessine(Montagne const& a_dessiner) const;
+virtual void dessine(Ciel const& a_dessiner) const; 	
+
+private : 
+
+std::ostream& flot; 
 
 	
 };

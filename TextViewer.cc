@@ -17,6 +17,9 @@ void TextViewer :: dessine(Ciel const& a_dessiner)
 {
 	a_dessiner.affiche();
 }
-		
+
+
+//Constructeur de classe
+TextViewer :: TextViewer (ostream& flot) : SupportADessin(), flot(flot) {}
 	
 

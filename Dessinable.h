@@ -2,12 +2,20 @@
 #include <iostream>
 #include "SupportADessin.h"
 
-
-class Dessinable //  permet de classer les objets qui sont dessinabletout les objets necessaure pour dessiner 
+//Cette classe abstraite s'occupe de dessiner les différents objets (Montagnes, ciel...) de la simulation
+class Dessinable  
 {
 	public :
 	
+	//Méthode virtuelle pure redéfinie dans les différentes sous-classes à dessiner
 	void dessine_sur(SupportADessin& a_dessiner) = 0;
 	
+	Dessinable(SupportADessin& supp);
 	
+	virtual ~Dessinable() {}
+	
+	protected :
+	
+	//On indique quel support à dessin on souhaite utiliser
+	SupportADessin* support; 
 };

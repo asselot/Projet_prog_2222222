@@ -49,6 +49,8 @@ Montagne* ptr_hill;
 
 //--------------------------------------------------------------OPERATEUR-------------------------------------------------------------//
 
-	friend std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys); 
-
+friend std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys); 
+	
+// Interdiction de la copie: conceptuellement problématique
+Systeme(Systeme& systeme) = delete; 
 };

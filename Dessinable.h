@@ -10,7 +10,7 @@ class Dessinable
 	//Méthode virtuelle pure redéfinie dans les différentes sous-classes à dessiner
 	void dessine_sur(SupportADessin& a_dessiner) = 0;
 	
-	Dessinable(SupportADessin& supp);
+	Dessinable(SupportADessin& a_dessiner);
 	
 	virtual ~Dessinable() {}
 	

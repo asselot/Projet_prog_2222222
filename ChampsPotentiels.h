@@ -45,7 +45,9 @@ class ChampsPotentiels : public Boite3D<Potentiel>
 	
 	double norme_vitesse (unsigned int pointi, unsigned int pointj, unsigned int pointk);
 
-        void std::vector<std::vector<std::vector<Potentiel>>> get_tablO() const;
+        virtual void std::vector<std::vector<std::vector<Potentiel>>> get_tablO() const override;
+	
+	virtual void affiche() const override; 
 		
 	private:
 	

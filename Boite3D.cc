@@ -23,5 +23,9 @@ int Boite3D:: getNz()
 	return Nz;
 }
 
+std::vector<std::vector<std::vector<T>>> get_tablO() const 
+{
+	return tablO;
+}
 
 

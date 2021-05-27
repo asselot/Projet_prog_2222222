@@ -15,7 +15,7 @@ class SupportADessin
 virtual ~SupportADessin() = default;
 
 // Constructeur de la classe
-SupportADessin();
+SupportADessin() {}
 
 // Méthodes virtuelles pures qui indiquent comment afficher les différents objets de la simulation
 // Ces méthodes sont pures car la classe ne sait pas encore comment afficher les elements dessinables

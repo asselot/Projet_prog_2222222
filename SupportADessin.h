@@ -22,7 +22,7 @@ SupportADessin() {}
 
 virtual void dessine(Systeme const& a_dessiner) const = 0;
 virtual void dessine(Montagne const& a_dessiner) const = 0;
-virtual void dessine(Ciel const& a_dessiner) const= 0;
+virtual void dessine(Ciel const& a_dessiner) const = 0;
 	
 protected : 
 	

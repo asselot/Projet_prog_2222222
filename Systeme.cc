@@ -12,22 +12,23 @@ void Systeme :: affiche (ostream& sortie) const
 }
 
 // Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
-virtual void Systeme :: demarre ()
+virtual void Systeme :: demarre (SupportADessin& a_dessiner)
 {
 	ptr_champs ->resolution();
-	&ptr_ciel (&ptr_champs)
-	dessine_sur();
-	evolue();
+	ptr_ciel = new Ciel(&ptr_champs); // permet de débeuguer 
+	dessine_sur(a_dessiner);
+	evolue(a_dessiner);
 }
 
 // Méthode dessine_sur() héritée de Dessinable
-virtual void Systeme :: dessine_sur() override
-{ A->dessine(*this); }
+virtual void Systeme :: dessine_sur(SupportADessin& a_dessiner) override
+{ a_dessiner->dessine(*this); }
 
 // Fait évoluer le système (surtout nuage?)
-virtual void Systeme ::  evolue ()
+virtual void Systeme ::  evolue (SupportADessin& a_dessiner)
 {
-	dessine_sur ();	
+	// pas besoin d'itération sur cubeair
+	dessine_sur(a_dessiner);	
 }
 
 //--------------------------------------------------------------OPERATEUR-------------------------------------------------------------//

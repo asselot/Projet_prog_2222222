@@ -177,8 +177,21 @@ bool ChampsPotentiels:: estauxbords(Potentiel pot) const
 	}
 }
 
-vector<vector<vector<Potentiel>>> ChampsPotentiels:: get_tablO()
-{
-	return tablO;
-}
 
+void ChampsPotentiels:: affiche() override
+{
+	
+	for (unsigned int x(0); x < Nx; ++x)
+	{
+		for (unsigned int y(0); y < Ny; ++y)
+		{
+			for (unsigned int z(0); z < Nz; ++z)
+			{
+				
+					tablO[x][y][z].affiche();
+				
+			}
+		}
+	}
+	
+}

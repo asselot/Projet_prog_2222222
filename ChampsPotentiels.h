@@ -14,7 +14,8 @@ class ChampsPotentiels : public Boite3D
 {
 	friend class Ciel;
 	public:
-	ChampsPotentiels(unsigned int nox = 30, unsigned int noy = 30, unsigned int noz = 30, double p = 1) : Boite3D(nox, noy, noz, p) {}
+	ChampsPotentiels(unsigned int nox = 30, unsigned int noy = 30, unsigned int noz = 30, double p = 1) : Boite3D(nox, noy, noz, p) 
+	{}
 
 	void initialise(double vi, const Montagne& mont); //il ne reconnait pas le type montagne!!
 	

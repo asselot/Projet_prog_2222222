@@ -11,6 +11,7 @@
 class SupportADessin 
 {
 	public:
+	
 // On suppose ici que les supports ne seront ni copiés ni déplacés	
 virtual ~SupportADessin() = default;
 

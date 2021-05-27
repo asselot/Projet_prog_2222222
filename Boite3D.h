@@ -13,6 +13,8 @@ class Boite3D
 	int getNz();
 	double getpas();
 	
+	virtual void affiche() = 0;
+	
 	protected:
 	unsigned int Nx;
 	unsigned int Ny;

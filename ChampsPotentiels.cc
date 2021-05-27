@@ -1,48 +1,57 @@
 #include <iostream>
 #include <vector>
-#include "Vecteur2D.h"
-#include "Montagne.h"
 #include "ChampsPotentiels.h"
 #include "constantes.h"
 #include <cmath>
+#include "Montagne.h"
+#include "Potentiel.h"
 
 using namespace std;
 using namespace Physique;
 
+// Initialise les potentiels de la boîte 3D
 void ChampsPotentiels:: initialise(double vi, Montagne const& mont) 
 {
 	for (unsigned int x(0); x < Nx; ++x)
 	{
-		potentiels3D.push_back(vector<vector<Potentiel>> ());
+		tablO.push_back(vector<vector<Potentiel>> ());
 		
 		for (unsigned int y(0); y < Ny; ++y)
 		{
-			potentiels3D[x].push_back(vector<Potentiel> ());
+			tablO[x].push_back(vector<Potentiel> ());
 			
 			for (unsigned int z(0); z < Nz; ++z)
 			{
-				potentiels3D[x][y].push_back(Potentiel ()); //modifier le constructeur par défaut 
+				tablO[x][y].push_back(Potentiel ()); //modifier le constructeur par défaut 
 				
+				// Vérifie que le potentiel ne soit ni aux bords de la boîte ni en dessous de la montagne 
+				// if( not (estauxbords(potentiels3D[x][y][z])) or (z >= mont.altitude(x, y))
 				if ((x != 0) or (x != Nx-1) or (y != 0) or (y != Ny-1) or (z != 0) or (z != Nz-1) or (z >= mont.altitude(x, y))) 
 				{
-					potentiels3D[x][y][z].poten.coord_x = - (vi/2.0) * (z * pas);
-					potentiels3D[x][y][z].poten.coord_y = (vi/2.0) * (y - (Ny - 1)/2.0) * pas;	
-					/*cout << x << " " << y << " " << z << " " << - (vi/2) * (z * pas) << " " << (vi/2) * (y - (Ny - 1)/2) * pas << " " << vi/2  << " " << pas << " ";
-					cout << endl;*/
+					tablO[x][y][z].poten.coord_x = - (vi/2.0) * (z * pas);
+					tablO[x][y][z].poten.coord_y = (vi/2.0) * (y - (Ny - 1)/2.0) * pas;	
+					
 				}
+				
+				// Si le potentiel (vecteur) est aux bords ou sous la montagne il est initialisé à 0
 				else
 				{
-					potentiels3D[x][y][z].poten.coord_x = 0;
-					potentiels3D[x][y][z].poten.coord_y = 0;
+					tablO[x][y][z].poten.coord_x = 0;
+					tablO[x][y][z].poten.coord_y = 0;
 				}
 			}
 		}
 	}
 }
 
+
+// Retourne le vecteur vitesse sous forme de tableau fixe (les trois coordonées)
 array<double, 3> ChampsPotentiels:: vitesse(unsigned int i, unsigned int j, unsigned int k) const
 {
+	// Coordonnées initialisées à (0, 0, 0)
 	array < double, 3 > v {0};
+	
+	// Si les i, j, k ne respectent pas les dimensions de la boîte --> erreur !
 	if (( i > Nx) or ( j > Ny) or ( k > Nz))
 	{
 		cerr << "Erreur : dimension fausse " << endl;
@@ -50,11 +59,12 @@ array<double, 3> ChampsPotentiels:: vitesse(unsigned int i, unsigned int j, unsi
 	}
 	else 
 	{
-		if (not estauxbords(potentiels3D[i][j][k]))
+		if (not estauxbords(tablO[i][j][k]))
 		{
-			v[0] = potentiels3D[i+1][j][k].poten.coord_x - potentiels3D[i-1][j][k].poten.coord_x;
-			v[1] = potentiels3D[i-1][j][k].poten.coord_y - potentiels3D[i+1][j][k].poten.coord_y;
-			v[2] = (potentiels3D[i][j+1][k].poten.coord_y - potentiels3D[i][j-1][k].poten.coord_y - potentiels3D[i][j][k+1].poten.coord_x + potentiels3D[i][j][k-1].poten.coord_x);
+			v[0] = tablO[i+1][j][k].poten.coord_x - tablO[i-1][j][k].poten.coord_x;
+			v[1] = tablO[i-1][j][k].poten.coord_y - tablO[i+1][j][k].poten.coord_y;
+			v[2] = (tablO[i][j+1][k].poten.coord_y - tablO[i][j-1][k].poten.coord_y - tablO[i][j][k+1].poten.coord_x + tablO[i][j][k-1].poten.coord_x);
+			
 			for ( auto element : v)
 			{
 				element *= (1./ pas) ;
@@ -65,12 +75,13 @@ array<double, 3> ChampsPotentiels:: vitesse(unsigned int i, unsigned int j, unsi
 	}	
 }
 
+
+// Norme de la vitesse
 double ChampsPotentiels:: norme_vitesse(unsigned int pointi, unsigned int pointj, unsigned int pointk)
 {
 	array<double, 3> coord_vitesse(vitesse(pointi, pointj, pointk));
 	return sqrt(coord_vitesse[0]*coord_vitesse[0] + coord_vitesse[1]*coord_vitesse[1] + coord_vitesse[2]*coord_vitesse[2]);
 }
-
 	
 void ChampsPotentiels:: resolution (double seuil, unsigned int max, bool verbeuse)
 {
@@ -89,13 +100,14 @@ void ChampsPotentiels:: resolution (double seuil, unsigned int max, bool verbeus
 				{
 					for (unsigned int z(0); z < Nz; ++z)
 					{
-						potentiels3D[x][y][z].affiche();
+						tablO[x][y][z].affiche();
 					}
 				}
 			}
 		}*/
 	}
 }
+
 
 void ChampsPotentiels:: iteration(double E) 
 {
@@ -105,15 +117,16 @@ void ChampsPotentiels:: iteration(double E)
 		{
 			for (unsigned int z(0); z < Nz; ++z)
 			{
-				if (not estauxbords(potentiels3D[x][y][z]))
+				if (not estauxbords(tablO[x][y][z]))
 				{
-					potentiels3D[x][y][z].poten += potentiels3D[x][y][z].laplacien * E;
+					tablO[x][y][z].poten += tablO[x][y][z].laplacien * E;
 				}
 			}
 		}
 	}
 	
 }
+		
 
 void ChampsPotentiels :: calcule_laplaciens()
     {
@@ -122,40 +135,17 @@ void ChampsPotentiels :: calcule_laplaciens()
             for(size_t j(1); j < Ny-1; ++j)
             {
                 for (size_t k(1); k < Nx-1; ++k)
-                {
-                    /*if (estauxbords(potentiels3D[i][j][k]))                    
-                    {
-                        potentiels3D[i][j][k].laplacien = 0; //est ce qu'il considere qu'ils sont tous au bord?????????????????????????????????????                
-                    }
-                    else 
-                    {*/
-					potentiels3D[i][j][k].laplacien = potentiels3D[i-1][j][k].poten + potentiels3D[i][j-1][k].poten + potentiels3D[i][j][k-1].poten 
-					+ potentiels3D[i+1][j][k].poten + potentiels3D[i][j+1][k].poten + potentiels3D[i][j][k+1].poten - potentiels3D[i][j][k].poten * 6.0;
-					//cout << i << " " << j << " " << k << " " << potentiels3D[i][j][k].laplacien << endl;
-					//cout << i << " " << j << " " << k << " " << potentiels3D[i][j][k].laplacien << endl;
+                {                   
+					tablO[i][j][k].laplacien = tablO[i-1][j][k].poten + tablO[i][j-1][k].poten + tablO[i][j][k-1].poten 
+					+ tablO[i+1][j][k].poten + tablO[i][j+1][k].poten + tablO[i][j][k+1].poten - tablO[i][j][k].poten * 6.0;								
                 }
             }
         }
-        cout << "27 18 1 " << potentiels3D[27][18][1].laplacien << endl;
-        //remettre(m);
+        
     }
-/*void ChampsPotentiels::remettre(Montagne m){
-    for (unsigned int x(0); x < Nx; ++x)
-	{
-		for (unsigned int y(0); y < Ny; ++y)
-		{
-			for (unsigned int z(0); z < Nz; ++z)
-			{
-                if (m.altitude(x,y)> z)
-                {
-                    potentiels3D[x][y][z].laplacien.coord_x = 0;
-                    potentiels3D[x][y][z].laplacien.coord_y = 0;
-                }
-            }
-        }
-    }
-}*/
 
+
+// Retourne la somme des carrés des normes des vecteurs laplaciens
 double ChampsPotentiels:: erreur()
 {
 	double retour(0);
@@ -165,15 +155,16 @@ double ChampsPotentiels:: erreur()
 		{
 			for (unsigned int z(0); z < Nz; ++z)
 			{
-				retour += potentiels3D[x][y][z].laplacien.norme2(); //pour tous les points? pour quelle valeur de la vitesse? 
-				cout << retour << endl;
+				retour += tablO[x][y][z].laplacien.norme2(); 
+				
 			}
 		}
 	}
-	cout << retour << endl;
+	
 	return retour;
 }
 
+// Retourne true si un potentiel (vecteur) est au bord de la boîte
 bool ChampsPotentiels:: estauxbords(Potentiel pot) const
 {
 	if ((pot.poten.coord_x == 0) or (pot.poten.coord_x == Nx-1) or (pot.poten.coord_y == 0) or (pot.poten.coord_y == Ny-1))
@@ -185,3 +176,9 @@ bool ChampsPotentiels:: estauxbords(Potentiel pot) const
 		return false;
 	}
 }
+
+vector<vector<vector<Potentiel>>> ChampsPotentiels:: get_tablO()
+{
+	return tablO;
+}
+

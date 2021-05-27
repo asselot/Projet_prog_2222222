@@ -4,10 +4,11 @@
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Fait appel aux méthodes affiche() des différents composants du système
-void Systeme :: affiche ()
+void Systeme :: affiche (ostream& sortie) const
 {
-	ptr_hill->affiche_para;
-	ptr_champs->affiche();
+	sortie << " Montagnes : " << &ptr_hill << endl;
+	sortie << " Champs potentiels : " << &ptr_champs << endl;
+	sortie << " Ciel : " << &ptr_ciel << endl;
 }
 
 // Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
@@ -33,5 +34,5 @@ virtual void Systeme ::  evolue ()
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys)
 {
-	Sys.affiche();
+	Sys.affiche(sortie);
 }

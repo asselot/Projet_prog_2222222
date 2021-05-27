@@ -21,8 +21,8 @@ class Boite3D
 	int getNz() const;
 	double getpas();
 	
-	// Getteur en virtuel pur car le triple tableau sera de nature différente pour les sous classes
-	std::vector<std::vector<std::vector<T>>> get_tablO() const = 0;
+	// Getteur du triple tableau sera de nature différente pour les sous classes
+	std::vector<std::vector<std::vector<T>>> get_tablO() const ;
 	
 	// Méthode affiche définie différemment pour les sous classes, d'où la méthode virtuelle pure
 	virtual void affiche() const = 0;

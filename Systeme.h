@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Montagne.h"
 #include "Ciel.h"
-#include "ChampsPotentiels"
+#include "ChampsPotentiels.h"
 
 // Représente ce qui forme un système physique
 
@@ -31,15 +31,15 @@ Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
 virtual void affiche ();
 
 // Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
-virtual void demarre ();
+void demarre ();
 
 // Méthode dessine_sur() héritée de Dessinable
-virtual void dessine_sur() override;
+virtual void dessine_sur();
 
 private : 
 
 // Fait évoluer le système (surtout nuage?)
-virtual void evolue ();
+void evolue ();
 
 //--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 

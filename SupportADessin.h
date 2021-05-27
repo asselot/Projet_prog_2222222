@@ -20,9 +20,9 @@ SupportADessin() {}
 // Méthodes virtuelles pures qui indiquent comment afficher les différents objets de la simulation
 // Ces méthodes sont pures car la classe ne sait pas encore comment afficher les elements dessinables
 
-virtual void dessine(Systeme const&) = 0;
-virtual void dessine(Montagne const&) = 0;
-virtual void dessine(Ciel const&) = 0;
+virtual void dessine(Systeme const& a_dessiner) const = 0;
+virtual void dessine(Montagne const& a_dessiner) const = 0;
+virtual void dessine(Ciel const& a_dessiner) const= 0;
 	
 protected : 
 	

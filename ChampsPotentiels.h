@@ -24,7 +24,7 @@ class ChampsPotentiels : public Boite3D
 	std::array<double, 3> vitesse( unsigned int i, unsigned int j, unsigned int k) const;
 	double norme_vitesse(unsigned int pointi, unsigned int pointj, unsigned int pointk);
 
-
+        void
 	std::vector<std::vector<std::vector<Potentiel>>> get_tableaudepotentiels();
 		
 	private:

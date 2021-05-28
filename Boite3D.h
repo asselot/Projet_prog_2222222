@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string>
 
 // Super classe qui définit une boîte en 3D où va être définit le système physique
 // Ciel et ChampsPotentiels sont des boîte 3D --> héritage
@@ -16,10 +15,10 @@ class Boite3D
 	Boite3D(unsigned int nomx, unsigned int nomy, unsigned int nomz, double ps) : Nx(nomx), Ny(nomy), Nz(nomz), pas(ps) {}
 	
 	// Getteurs
-	int getNx() const;
-	int getNy() const;
-	int getNz() const;
-	double getpas();
+	int get_Nx() const;
+	int get_Ny() const;
+	int get_Nz() const;
+	double get_pas();
 	
 	// Getteur du triple tableau sera de nature différente pour les sous classes
 	std::vector<std::vector<std::vector<T>>> get_tablO() const ;

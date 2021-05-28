@@ -1,24 +1,25 @@
 #include <iostream>
+#include <vector>
 #inlude "Boite3D.h"
 
 using namespace std;
 
-double Boite3D:: getpas()
+double Boite3D:: get_pas()
 {
 	return pas;
 }
 
-int Boite3D:: getNx()
+int Boite3D:: get_Nx()
 {
 	return Nx;
 }
 
-int Boite3D:: getNy()
+int Boite3D:: get_Ny()
 { 
 	return Ny;
 } 
 
-int Boite3D:: getNz()
+int Boite3D:: get_Nz()
 {
 	return Nz;
 }

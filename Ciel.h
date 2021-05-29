@@ -7,15 +7,15 @@
 #include "SupportADessin.h"
 #include "ChampsPotentiels.h"
 
-class Ciel : public Boite3D <CubedAir>, Dessinable
-
+class Ciel : public Boite3D<CubedAir>, public Dessinable
 {
-	friend class CubedAir;// non 
 	
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
+
+	friend class CubedAir;
 	public:
-		
-	// Constructeur du ciel à partir de champ potentiels
-		Ciel(const ChampsPotentiels& champ) : Boite3D(champ.getNx(), champ.getNy(), champ.getNz(), champ.getpas()) 
+	
+	Ciel(const ChampsPotentiels& champ) : Boite3D(champ.getNx(), champ.getNy(), champ.getNz(), champ.getpas()) // Constructeur du ciel à partir d'un champ de potentiels donné
 	{//rahjouter le constructeur des cubes d'air 
 		for (unsigned int i(0); i < champ.getNx(); ++i)
 		{
@@ -29,8 +29,7 @@ class Ciel : public Boite3D <CubedAir>, Dessinable
 		}
 	}
 	
-	// Constructeurs à partir des dimensions direct de la boîte
-	Ciel(double Lx, double Ly, double Lz, double lambda) : Boite3D(Lx, Ly, Lz, lambda) 
+	Ciel(double Lx, double Ly, double Lz, double lambda) : Boite3D(Lx, Ly, Lz, lambda) // Constructeur à partir de dimensions données
 	{
 		for (unsigned int i(0); i < Lx/lambda; ++i)
 		{
@@ -44,13 +43,14 @@ class Ciel : public Boite3D <CubedAir>, Dessinable
 		}
 	}
 	
-	CubedAir precedente(double pas_temps, double x, double y, double z);
-	
-	// Méthode héritée de Dessinable
+	CubedAir precedente(double pas_temps, double x, double y, double z); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
+
 	virtual void dessine_sur(SupportADessin& a_dessiner) override;
 	
-	// Méthode héritée de Boite3D qui affiche les CubedAir 
-	virtual void affiche() override;
+	virtual void affiche() override; // Méthode héritée de Boite3D qui affiche tous les cubes d'air du ciel
 	
-	
+	// constructeurs+ dessinesur+ affichage
 };
+
+
+	

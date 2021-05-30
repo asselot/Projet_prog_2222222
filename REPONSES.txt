@@ -11,14 +11,14 @@ Représentation : nouvelle classe
 
 Organisation : attributs --> Coordonnées du vecteurs choisies en deux dimensions :  l'abscisse x, et l'ordonnée y tout les deux en double. 
                              Nous avons choisi de créer deux attributs (x et y) au lieu de créer une structure Coordonnee composée de deux champs 
-                             x et y, par soucis de simplicité au niveau des méthodes (en particulier affiche() et compare()) . Il est possible que nous changions si 
-                             le programme ne devient pas assez lisible.
+                             x et y, par soucis de simplicité au niveau des méthodes (en particulier affiche() et compare()) . Il est possible que nous 
+                             changions si le programme ne devient pas assez lisible.
                              
                              - attributs donnés en privé - ainsi ils sont connus du programmeur mais ne peuvent être modifier "directement" par l'utilisateur, 
                              cela assure une certaine sécurité et permet d'assurer le principe d'encapsulation, à noter cependant que le choix (cf méthodes) d'une 
-                             méthode publique qui initialise le vecteur affaiblit ce procesus. Dans cette mesure il sera préférable de modifier cette partie du code 
-                             et d'utiliser un constructeur afin d'éviter d'affaiblir le programme. C'est pourquoi nous avons créer en commentaire un constructeur,
-                             n'effectuant rien mais qui construit par défaut un vecteur nul.
+                             méthode publique qui initialise le vecteur affaiblit ce procesus. Dans cette mesure il sera préférable de modifier cette partie 
+                             du code et d'utiliser un constructeur afin d'éviter d'affaiblir le programme. C'est pourquoi nous avons créer en commentaire 
+                             un constructeur, n'effectuant rien mais qui construit par défaut un vecteur nul.
                              
                              
                méthodes  --> Une méthodes qui permet d'afficher les coordonnées du vecteur séparemment x et y.
@@ -48,7 +48,8 @@ Organisation : attributs --> Coordonnées du vecteurs choisies en deux dimension
               b] quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
               
                         a]--> Cela n'impliquerait rien, car comme en programmation orienté objet, on sépare l'implémentation de l'interface, les attributs de 
-                        classe resteraient inchangés.
+                        classe resteraient inchangés. La représentation interne à la classe des vecteurs est indépendante de leur construction.
+
                         
                         b]--> Définir un nouveau constructeur de Vecteur2D en coordonnées polaire serait difficile, premièrement parce qu'il initialiserait 
                         le vecteur avec deux doubles (un pour l'angle, l'autre pour le module) de la même façon que le constructeur en coordonées cartésiennes. 
@@ -59,12 +60,12 @@ Organisation : attributs --> Coordonnées du vecteurs choisies en deux dimension
                         
 [Question P4.3] Quels opérateurs avez vous introduits ?      
                         
-                        Nous avons introduit des opérateurs internes : ==, +=, -=, *=, Op(pour opposé) qui ont besoin des attributs privés de la classe, 
+                        Nous avons introduit des opérateurs internes : ==, +=, -=, *=, qui ont besoin des attributs privés de la classe, 
                         et donc ne peuvent être déclarés à l'exertieur de la classe. 
                         L'opérateur << sert à afficher les vecteurs, et qui retourne un ofstream pour permettre d'enchainer plusieurs appel d'opérateurs << sur
                         une même ligne. Les opérateurs arithmétiques +=, -=, *= sont externes ils doivent accéder aux parties internes. Mais nous avons également
                         introduit des opérateurs +, ++, -, --, * définit en externes qui utilisent les opérateurs internes.
-                                              
+                        Enfin il y a l'opérateur "~" symbolisant l'unitairisation du vecteur                     
                                                               
 -------- Semaine 5 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,11 +73,14 @@ Organisation : attributs --> Coordonnées du vecteurs choisies en deux dimension
                         
                             Nous avons introduit comme attributs trois unsigned int pour représenter Nx, Ny, Nz (nombre positif de cube dans chacune des trois
                         dimensions). Il est plus facile de les initialiser comme trois variables indépendantes que comme un tableau fixe de trois int
-                        (implémentation intitiale) car il est plus simple de manipuler ces grandeurs telle quelle. Nous avons ensuite introduit le pas (double).
+                        (implémentation intitiale) car il est plus simple de manipuler ces grandeurs telle quelle. Nous avons ensuite introduit le pas (double) qui ne change pas au cours du temps donc implémenté en temps qu'attribut.
                         Enfin, nous avons choisi de modéliser le champs de potentiel par un triple vecteur de Potentiel. Cela permet facilement de modéliser les
                         trois dimensions : pour une coordonées (x,y,z) il faut appeler le composant[x][y][z].
                             Le constructeur de la classe initialise essentiellement les dimentions de la boîte. Enfin, nous avons choisi d'ajouter une méthode 
                         permettant de vérifier si les potentiels (vecteurs) de Potentiel (classe) sont aux bords de la boîte.
+                        
+                        Note a posteriori : nous avons rajouté décidé de faire hérité ChampsPotentiels d' une boîte 3D ayant comme attributs les dimensions de la boîte (Nx, Ny, Nz et pas) ainsi que des getteurs pour des questions d'accès dans certaines méthodes.
+                        
                         
 -------- Semaine 6 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -84,15 +88,18 @@ Organisation : attributs --> Coordonnées du vecteurs choisies en deux dimension
 Justifiez votre réponse.
 
                         La méthode itération s'utilise de manière intermédiaire dans le programme, c'est-à-dire qu'elle n'est utile que pour l'autre méthode
-                        calcule_laplacien(). Cette dernière étant utiliser ouvertement par l'utilisateur elle doit être publique. En revanche, la méthode
-                        iteration() n'est pas appelée explicitemment par l'utilisateur. Aussi n'est-elle pas utile pour une autre classe, donc il n'est pas
-                        néessaire qu'elle soit protected  Ainsi, pour garantir une bonne encapsulation, nous avons choisi de la mettre en private.
+                        calcule_laplacien() Ne devant ni être appelée explicitement par l'utilisateur, ni n'étant utile à une autre classe, nous l'avons mise 
+                        en private, pour garantir une bonne encapsulation.  
+                       
 
 [Question P7.2] Dans votre conception, comment/où est représenté le paramètre ε de l'équation (6) ?
 
                        Le paramètre ε est passé en paramètre dans la méthode iteration() avec comme valeur par défaut 0.1.
 
-[Question P8.1] Que vous inspire le paragraphe précédent ? Cela introduit-il d'autres classes ? Cela modifie-t-il votre conception précédente ? Si oui, comment et pourquoi ?
+[Question P8.1] Que vous inspire le paragraphe précédent ? Cela introduit-il d'autres classes ? Cela modifie-t-il votre conception précédente ? Si oui, comment et pourquoi ?             
+                       Nous avons changé notre implémentation, déclaré une nouvelle classe et utilisé l'héritage. Les classes ChampsPotentiels et Ciel sont toute les deux définis par une boîte définit par un pas et les dimensions en 3D de la boîte (Nx, Ny, Nz). Nous avons ainsi choisi d'introduire une super classe Boite3D dont hérite ChampsPotentiel et Ciel, car elles SONT toutes deux des Boite3D mais ayant des caractéristiques différentes.
+                       
+                       Note a posteriori : ces classes possèdent également toutes deux un triple tableau mais d'objets différents (Potentiel ou CubedAir). Nous avons donc rajouter un triple tableau dans la Super classe dont le type sera défini lors de la déclaration des sous-classe grâce aux templates. Enfin nous avons rajouter une méthode affiche() virtuelle pure redéfinit dans chacune des sous classe pour afficher les différentes caractéristiques, et des getteurs.
 
 [Question P8.2] Parmi les grandeurs citées ci-dessus, lesquelles représentez-vous sous forme d'attributs et lesquelles sous forme de méthodes ?
 
@@ -101,23 +108,29 @@ Justifiez votre réponse.
 
 [Question P9.1] En termes de POO, quelle est donc la nature de la méthode dessine_sur() ?
 
+C'est une méthode virtuelle pure car elle dépend entièrement du type d'élément concerné, ainsi une définition commune n'aurait pas de sens . En effet comme chaque objet héritant de la Super classe Dessinable a des paramètres différents et peut être donc déssiné différement, il est logique que dessine_sur() soit pure. 
+
 [Question P9.2] Quelle est la bonne façon de le faire dans un cadre de programmation orientée-objet ?
 
-                      On peut choisir de créer une collection de montagne grâce à un tableau vector.Mais cela a plusieurs inconvénients. Le premier étant de ne
-                      pas pouvoir avoir différents types de montagnes. Il est donc préférable 
+                      On peut choisir de créer une collection de montagne grâce à un tableau vector. Mais cela a plusieurs inconvénients. Le premier étant de ne
+                      pas pouvoir avoir différents types de montagnes. Il est donc préférable d'utiliser des pointeurs sur des montagnes qui pourront ainsi pointer sur des types de montagnes différents
 
 [Question P9.3] A quoi faut-il faire attention pour les classes contenant des pointeurs ? Quelles solutions peut-on envisager ?
                       
-                      Il faut faire attention à la désallocation de mémoire. Lorsque que l'objet système est supprimé grâce au destructeur, si on ne fait rein, 
+                      Il faut faire attention à ce que ces pointeurs existent aussi longtemps que la classe Systeme mais aussi qu'ils ne continuent pas d'exister après
+                      En bref, il faut faire attention à la désallocation de mémoire. Lorsque que l'objet système est supprimé grâce au destructeur, si on ne fait rien, 
                       les montagnes subsiste en mémoire et il n'y a plus aucun pointeur pour se « rappeler » son adresse. Il y aura fuite de mémoire. Pour éviter
                       cela, il faut faire un delete des montagnes dans le destructeur de Systeme afin que qu'elles soient supprimées avant.
+                     
 
 [Question P9.4] Comment représentez vous la classe Systeme ? 
 Expliquez votre conception (attributs, interface, ...).
 
+La classe Systeme représente ce qui compose le système physique à modéliser. Elle doit posséder donc des montagnes, un cie
+
 
 -------- Semaine 8 -----------------------------------------------------------------------------------------------------------------------------------------------
-
+[Question P12.1] Comment représentez-vous ces nouveaux objets « chaînes de montagnes » ? Où s'incrivent-ils dans votre conception ? Quelle(s) classe(s) avez vous ajoutée(s) ? Cela change-t-il quelques choses aux montagnes que vous avez conçues jusqu'ici ?
 -------- Semaine 9 -----------------------------------------------------------------------------------------------------------------------------------------------
 -------- Semaine 10 -----------------------------------------------------------------------------------------------------------------------------------------------
 -------- Semaine 11 ----------------------------------------------------------------------------------------------------------------------------------------------

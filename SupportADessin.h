@@ -1,10 +1,13 @@
 #pragma once
 #include <iostream>
 
-
-class Montagne; // Prototypes des classes nécessaires à la déclaration de SupportADessin afin d'éviter une inclusion circulaire
+// Prototypes des classes nécessaires à la déclaration de SupportADessin afin d'éviter une inclusion circulaire
+class Montagne; 
 class Ciel;
 class Systeme;
+
+
+// Super classe virtuelle qui représente la façon choisie pour dessiner (écran mode texte ou mode graphique)
 
 class SupportADessin 
 {
@@ -12,8 +15,11 @@ class SupportADessin
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 	
 	public:
-	virtual ~SupportADessin() = default; // demander à Sixtine de les commenter 
 	
+	virtual ~SupportADessin() = default; 
+	// on suppose ici que les supports ne seront ni copiés ni déplacés
+	
+	// Méthode pure pour permettre aux différents objets d'être afficher
 	virtual void dessine(Systeme const&) = 0;
 	
 	virtual void dessine(Montagne const&) = 0;

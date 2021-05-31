@@ -40,7 +40,7 @@ class Montagne : public Dessinable
 	
 };
 
-	std::ostream& operator<<(std::ostream& sortie, Montagne const& montagne); 
+	std::ostream& operator<<(std::ostream& sortie, Montagne& montagne); 
 
 
 class ChaineDeMontagnes : public Montagne

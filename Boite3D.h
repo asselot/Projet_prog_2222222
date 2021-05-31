@@ -35,10 +35,11 @@ template <typename T> class Boite3D
 	
 	double getpas() const; // Retourne le pas
 	
-	virtual void affiche() = 0; // Méthode virtuelle pure permettant d'afficher une instance 
+	virtual void affiche() const; // Méthode virtuelle pure permettant d'afficher une instance 
 	
 	std::vector<std::vector<std::vector<T>>> get_tablO() const; // Retourne le tableau tridimensionnel
 	
 	
 };
 
+std :: ostream& operator << (std :: ostream& sortie, Boite3D& b)

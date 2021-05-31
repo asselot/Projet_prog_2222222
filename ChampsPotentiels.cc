@@ -153,18 +153,12 @@ array<double, 3> ChampsPotentiels:: vitesse(unsigned int i, unsigned int j, unsi
 
 
 // Norme de la vitesse
-double ChampsPotentiels:: norme_vitesse(unsigned int pointi, unsigned int pointj, unsigned int pointk)
+double ChampsPotentiels:: norme_vitesse(unsigned int pointi, unsigned int pointj, unsigned int pointk) const
 {
 	// Crée un tableau à 3 éléments regroupant les coordonnées de la vitesse calculée avec la méthode vitesse() au point donné
 	array<double, 3> coord_vitesse(vitesse(pointi, pointj, pointk));
 	
 	return sqrt(coord_vitesse[0]*coord_vitesse[0] + coord_vitesse[1]*coord_vitesse[1] + coord_vitesse[2]*coord_vitesse[2]);
-}
-
-// Retourne le tableau de potentiels du champ
-vector<vector<vector<Potentiel>>> ChampsPotentiels:: get_tableaudepotentiels()
-{
-	return tablO;
 }
 
 
@@ -205,20 +199,3 @@ void ChampsPotentiels:: initialise(double vi, Montagne const& mont)
 }
 
 
-// Affiche tous les potentiels du champ
-void ChampsPotentiels:: affiche() 
-{
-	for (unsigned int x(0); x < Nx; ++x)
-	{
-		for (unsigned int y(0); y < Ny; ++y)
-		{
-			for (unsigned int z(0); z < Nz; ++z)
-			{
-				
-					tablO[x][y][z].affiche();
-				
-			}
-		}
-	}
-	
-}

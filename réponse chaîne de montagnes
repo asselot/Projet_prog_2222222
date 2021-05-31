@@ -1,0 +1,5 @@
+Les chaînes de montagnes sont représentées par une nouvelle classe héritée de Montagne, ChaineDeMontagnes, et en possèdent donc les attributs. Afin de les différentier des 
+montagnes simples, elles possèdent en plus deux tableaux unidimentionnels regroupant respectivement les montagnes simples et les ''sous-chaînes'' qui composent la chaîne.
+Le nombre de composantes de chacun de ces tableaux est répertorié dans deux autres attributs de la classe ChaineDeMontagnes. Nous avons ainsi défini les méthodes de Montagne
+comme des méthodes virtuelles afin que la classe ChaineDeMontagnes puisse en hériter et y avons redéfini la méthode permettant de calculer l'altitude pour l'adapter à la 
+conception de la nouvelle classe.

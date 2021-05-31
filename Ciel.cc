@@ -32,20 +32,4 @@ CubedAir Ciel:: precedente(double pas_temps, double x, double y, double z)
 	}
 }
 
-// Affiche tous les cubes d'air du ciel
-void Ciel:: affiche() override
-{
-	for (size_t x(0); x < get_Nx; ++x)
-	{
-		for (size_t y(0); y < get_Ny; ++y)
-		{
-			for (size_t z(0); z < get_Nz; ++z)
-			{
-				
-					tablO[x][y][z].affiche();
-				
-			}
-		}
-	}
-}
 

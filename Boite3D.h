@@ -27,13 +27,13 @@ template <typename T> class Boite3D
 	public:
 	Boite3D(unsigned int nomx, unsigned int nomy, unsigned int nomz, double ps) : Nx(nomx), Ny(nomy), Nz(nomz), pas(ps) {} // Constructeur d'une Boîte3D
 	
-	int getNx() const; // Retourne le nombre de cubes selon x
+	int get_Nx() const; // Retourne le nombre de cubes selon x
 	
-	int getNy() const; // Retourne le nombre de cubes selon y
+	int get_Ny() const; // Retourne le nombre de cubes selon y
 	
-	int getNz() const; // Retourne le nombre de cubes selon z
+	int get_Nz() const; // Retourne le nombre de cubes selon z
 	
-	double getpas() const; // Retourne le pas
+	double get_pas() const; // Retourne le pas
 	
 	virtual void affiche() const; // Méthode virtuelle pure permettant d'afficher une instance 
 	
@@ -42,4 +42,4 @@ template <typename T> class Boite3D
 	
 };
 
-std :: ostream& operator << (std :: ostream& sortie, Boite3D& b)
+std :: ostream& operator << (std :: ostream& sortie, Boite3D& b);

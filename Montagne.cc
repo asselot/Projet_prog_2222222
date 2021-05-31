@@ -26,19 +26,27 @@ void Montagne:: set_montagne(double x, double y, double h, double ox, double oy)
 }
 
 // Méthode permettant d'afficher les attributs d'une montagne
-void Montagne :: affiche_para() 
+void Montagne :: affiche_para(ostream& sortie) const
 
 {
-	cout << " une montagne : " << endl;
-	cout << type << " de paramètre : " << endl;
-	cout << " centre de la montagne (" << x0 << "," << y0 << ");" << endl;
-	cout << " hauteur maximale : " << H << endl;
-	cout << " étalement en x : " << ex << endl;
-	cout << " étalement en y : " << ey << endl;
+	sortie << " une montagne : " << endl;
+	sortie << type << " de paramètre : " << endl;
+	sortie << " centre de la montagne (" << x0 << "," << y0 << ");" << endl;
+	sortie << " hauteur maximale : " << H << endl;
+	sortie << " étalement en x : " << ex << endl;
+	sortie << " étalement en y : " << ey << endl;
 
 	
 	
 }
+
+std::ostream& operator<<(std::ostream& sortie, Montagne const& montagne)
+{
+	montagne.affiche_para(sortie);
+	return sortie;
+	
+}
+
 
 // Méthode dessine_sur redéfinie
 void Montagne::  dessine_sur(SupportADessin& a_dessiner)

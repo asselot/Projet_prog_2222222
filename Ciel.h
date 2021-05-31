@@ -46,9 +46,7 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 	CubedAir precedente(double pas_temps, double x, double y, double z); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
 
 	virtual void dessine_sur(SupportADessin& a_dessiner) override;
-	
-	virtual void affiche() override; // Méthode héritée de Boite3D qui affiche tous les cubes d'air du ciel
-	
+		
 	// constructeurs+ dessinesur+ affichage
 };
 

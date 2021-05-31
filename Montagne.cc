@@ -40,7 +40,7 @@ void Montagne :: affiche_para(ostream& sortie) const
 	
 }
 
-std::ostream& operator<<(std::ostream& sortie, Montagne const& montagne)
+std::ostream& operator<<(std::ostream& sortie, Montagne& montagne)
 {
 	montagne.affiche_para(sortie);
 	return sortie;

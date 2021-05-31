@@ -21,7 +21,7 @@ class Montagne : public Dessinable
 	
 	double ey; // Etalement en y de la montagne 
 	
-	void affiche_para(std :: ostream& sortie)const; // Méthode permettant d'afficher les attributs d'une montagne en privé car utilisée par la surcharge d'opérateur <<
+	//void affiche_para(std :: ostream& sortie)const; // Méthode permettant d'afficher les attributs d'une montagne en privé car utilisée par la surcharge d'opérateur <<
 
 
 	
@@ -37,6 +37,16 @@ class Montagne : public Dessinable
 	virtual void set_montagne(double x, double y, double h, double ox, double oy); // Méthode permettant de modifier les attributs d'une montagne avec les valeurs passées en arguments
 			
 	void dessine_sur(SupportADessin &a_dessiner) override ; // Méthode dessine_sur redéfinie
+	
+	double get_x0();
+	
+	double get_y0();
+	
+	double get_H();
+	
+	double get_ex();
+	
+	double get_ey();
 	
 };
 

@@ -26,7 +26,7 @@ void Montagne:: set_montagne(double x, double y, double h, double ox, double oy)
 }
 
 // Méthode permettant d'afficher les attributs d'une montagne
-void Montagne :: affiche_para(ostream& sortie) const
+/*void Montagne :: affiche_para(ostream& sortie) const
 
 {
 	sortie << " une montagne : " << endl;
@@ -38,14 +38,18 @@ void Montagne :: affiche_para(ostream& sortie) const
 
 	
 	
+}*/
+
+std::ostream& operator<<(ostream& sortie, Montagne& montagne) 
+{
+	sortie << " une montagne : " << endl;
+	sortie << " centre de la montagne (" << montagne.get_x0() << "," << montagne.get_y0() << ");" << endl;
+	sortie << " hauteur maximale : " << montagne.get_H() << endl;
+	sortie << " étalement en x : " << montagne.get_ex() << endl;
+	sortie << " étalement en y : " << montagne.get_ey() << endl;
+	return sortie;
 }
 
-std::ostream& operator<<(std::ostream& sortie, Montagne& montagne)
-{
-	montagne.affiche_para(sortie);
-	return sortie;
-	
-}
 
 
 // Méthode dessine_sur redéfinie
@@ -53,6 +57,31 @@ void Montagne::  dessine_sur(SupportADessin& a_dessiner)
 {
 	a_dessiner.dessine(*this);
 	
+}
+
+double Montagne:: get_x0()
+{
+	return x0;
+}
+	
+double Montagne:: get_y0()
+{
+	return y0;
+}
+	
+double Montagne:: get_H()
+{
+	return H;
+}
+	
+double Montagne:: get_ex()
+{
+	return ex;
+}
+	
+double Montagne:: get_ey()
+{
+	return ey;
 }
 
 // Méthode donnant aux attributs de la i-ème montagne simple de la chaîne les valeurs passées en arguments
@@ -143,3 +172,4 @@ int ChaineDeMontagnes:: get_nbre_chaines()
 {
 	return nombre_chaines;
 }
+

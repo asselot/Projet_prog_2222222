@@ -34,11 +34,11 @@ class Vecteur2D
 
 	
     // - opérateur interne - Retourne l'addition au vecteur du vecteur "V" 
-    Vecteur2D& operator += (Vecteur2D& V); 
+    Vecteur2D& operator += (Vecteur2D const& V); 
 	
     
     // - opérateur interne - Retourne la soustraction au vecteur du vecteur "V" 
-    Vecteur2D& operator -= (Vecteur2D& V);  
+    Vecteur2D& operator -= (Vecteur2D const& V);  
 	
         
     // - opérateur interne - Retourne le vecteur multiplié par x

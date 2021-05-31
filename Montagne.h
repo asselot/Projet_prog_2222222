@@ -3,7 +3,6 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
-#include <string>
 #include "Dessinable.h"
 #include "SupportADessin.h"
 #include "ChampsPotentiels.h"
@@ -11,6 +10,7 @@
 class Montagne : public Dessinable 
 {
 	private:
+	
 	double x0; // Coordonnée en x du centre de la montagne 
 	
 	double y0; // Coordonnée en y du centre de la montagne 
@@ -21,7 +21,9 @@ class Montagne : public Dessinable
 	
 	double ey; // Etalement en y de la montagne 
 	
-	std::string type; // Type de montagne 
+	void affiche_para(std :: ostream& sortie)const; // Méthode permettant d'afficher les attributs d'une montagne en privé car utilisée par la surcharge d'opérateur <<
+
+
 	
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
@@ -33,8 +35,8 @@ class Montagne : public Dessinable
 	virtual double altitude(double a, double b) const; // Méthode virtuelle qui retourne le maximum des altitudes des montagnes simples et des sous-chaînes qui composent la chaîne 
 	
 	virtual void set_montagne(double x, double y, double h, double ox, double oy); // Méthode permettant de modifier les attributs d'une montagne avec les valeurs passées en arguments
-	
-	void affiche_para(); // Méthode permettant d'afficher les attributs d'une montagne
+		
+	std::ostream& operator<<(std::ostream& sortie, Montagne const& montagne); 
 	
 	void dessine_sur(SupportADessin &a_dessiner) override ; // Méthode dessine_sur redéfinie
 	

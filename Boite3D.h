@@ -62,11 +62,11 @@ std::ostream& operator << (std::ostream& sortie, Boite3D <T> const& b)
     sortie << "Nx: " << b.get_Nx() << " Ny : " << b.get_Ny() << " Nz : " << b.get_Nz() << std:: endl;
     sortie << "Le pas des cubes :" << b.get_pas() << std::endl;
 
-    for (unsigned int x(0); x < b.get_Nx(); ++x)
+    for (int x(0); x < b.get_Nx(); ++x)
     {
-        for (unsigned int y(0); y < b.get_Ny(); ++y)
+        for ( int y(0); y < b.get_Ny(); ++y)
         {
-            for (unsigned int z(0); z < b.get_Nz(); ++z)
+            for (int z(0); z < b.get_Nz(); ++z)
             {
 
                     (b.get_tablO()[x][y][z]).affiche(sortie);
@@ -74,7 +74,7 @@ std::ostream& operator << (std::ostream& sortie, Boite3D <T> const& b)
             }
         }
     }
-
+return sortie;
 }
 
 

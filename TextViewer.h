@@ -1,4 +1,4 @@
-pragma once 
+#pragma once
 # include <iostream>
 # include "SupportADessin.h"
 # include "Montagne.h"
@@ -17,9 +17,9 @@ public :
 // Constructeur de classe
 TextViewer (std::ostream& flot);
 		
-virtual void dessine(Systeme const& a_dessiner) const;
-virtual void dessine(Montagne const& a_dessiner) const;
-virtual void dessine(Ciel const& a_dessiner) const; 	
+virtual void dessine(Systeme const& Sys) const;
+virtual void dessine(Montagne const& montagne) const;
+virtual void dessine(Ciel const& ciel) const;
 
 private : 
 

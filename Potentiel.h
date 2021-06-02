@@ -16,8 +16,9 @@ class Potentiel
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 	
 	public:
-	Potentiel() : poten(), laplacien() {} // Constructeur d'un potentiel
+    Potentiel() = default;
+    Potentiel(Vecteur2D const& p, Vecteur2D const& l) : poten(p), laplacien(l) {} // Constructeur d'un potentiel
 	
-	void affiche(); // Affiche les attributs d'un potentiel
+    void affiche(std :: ostream& sortie) const; // Affiche les attributs d'un potentiel
 	
 };

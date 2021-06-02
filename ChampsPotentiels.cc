@@ -1,10 +1,8 @@
-#include <iostream>
-#include <vector>
 #include "ChampsPotentiels.h"
 #include "constantes.h"
 #include <cmath>
-#include "Montagne.h"
-#include "Potentiel.h"
+
+
 
 using namespace std;
 using namespace Physique;
@@ -107,7 +105,7 @@ void ChampsPotentiels:: resolution (double seuil, unsigned int max, bool verbeus
 		calcule_laplaciens();
 		iteration();
 		cout << n << " ";
-		/*if (verbeuse)
+        /*if (verbeuse)
 		{
 			for (unsigned int x(0); x < Nx; ++x)
 			{
@@ -197,5 +195,3 @@ void ChampsPotentiels:: initialise(double vi, Montagne const& mont)
 		}
 	}
 }
-
-

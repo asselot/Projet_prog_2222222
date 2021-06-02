@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#pragma once
+#include <iostream>
 #include "Boite3D.h"
 #include "ChampsPotentiels.h"
 #include "constantes.h"
@@ -44,7 +46,7 @@ class CubedAir
 	
 	void set_vitesse(double coordx, double coordy, double coordz); // Associe les valeurs données aux coordonnées de la vitesse du cube 
 	
-	void affiche(); // Affiche les différents attributs du cube d'air 
+    void affiche(std :: ostream& sortie) const; // Affiche les différents attributs du cube d'air
 	
 	double vitesse_norme() const; // Calcule la norme de la vitesse d'un cube d'air 
 	

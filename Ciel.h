@@ -17,11 +17,11 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 	
     Ciel(const ChampsPotentiels& champ) : Boite3D<CubedAir>(champ.get_Nx(), champ.get_Ny(), champ.get_Nz(), champ.get_pas()) // Constructeur du ciel à partir d'un champ de potentiels donné
     {//rajouter le constructeur des cubes d'air
-        for (unsigned int i(0); i < champ.get_Nx(); ++i)
+        for (int i(0); i < champ.get_Nx(); ++i)
 		{
-            for (unsigned int j(0); j < champ.get_Ny(); ++j)
+            for ( int j(0); j < champ.get_Ny(); ++j)
 			{
-                for (unsigned int k(0); k < champ.get_Nz(); ++k)
+                for ( int k(0); k < champ.get_Nz(); ++k)
 				{
 					tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
 				}
@@ -50,6 +50,5 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 		
 	// constructeurs+ dessinesur+ affichage
 };
-
 
 	

@@ -84,10 +84,8 @@ void CubedAir:: set_vitesse(double coordx, double coordy, double coordz)
 }
 
 // Affiche les différents attributs du cube d'air 
-void CubedAir:: affiche()
+void CubedAir:: affiche(ostream& sortie) const
 {
-	cout << vitesse_norme()*vitesse_norme() << " " << enthalpie << " " << temperature << " " << pression << " " << pression_partielle << " " << pression_vapeur_saturante << " ";
+    sortie << vitesse_norme()*vitesse_norme() << " " << enthalpie << " " << temperature << " " << pression << " " << pression_partielle << " " << pression_vapeur_saturante << " ";
 	affiche_etat();
 }
-	
-	

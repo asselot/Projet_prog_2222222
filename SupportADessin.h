@@ -16,7 +16,7 @@ class SupportADessin
 	
 	public:
 	
-	virtual ~SupportADessin() = default; 
+    virtual ~SupportADessin() = default;
 	// on suppose ici que les supports ne seront ni copiés ni déplacés
 	
 	// Méthode pure pour permettre aux différents objets d'être afficher

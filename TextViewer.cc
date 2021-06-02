@@ -1,28 +1,29 @@
 # include <iostream>
-# include "SupportADessin"
+# include "SupportADessin.h"
 # include "Montagne.h"
 # include "Ciel.h"
-# include "ChampsPotentiels"
+# include "ChampsPotentiels.h"
+#include "TextViewer.h"
 
-// afficher les différents composants de Systeme, Montagne et Ciel en fonction des méthodes affiche() de chacun
+// afficher les différents composants de Systeme, Montagne et Ciel
 
-void TextViewer :: dessine(Systeme const& a_dessiner)
+void TextViewer :: dessine(Systeme const& Sys) const
 {
-	a_dessiner. affiche(); 
+    flot << Sys;
 }
 
-void TextViewer :: dessine(Montagne const& a_dessiner)
+void TextViewer :: dessine(Montagne const& montagne) const
 {
-	a_dessiner. affiche_para(); 
+    flot<< montagne;
 }
 
-void TextViewer :: dessine(Ciel const& a_dessiner)
+void TextViewer :: dessine(Ciel const& ciel) const
 {
-	a_dessiner.affiche();
+    flot << ciel;
 }
 
 
 //Constructeur de classe
-TextViewer :: TextViewer (ostream& flot) : SupportADessin(), flot(flot) {}
-	
+TextViewer :: TextViewer (std::ostream& flot) : SupportADessin(), flot(flot) {}
+
 

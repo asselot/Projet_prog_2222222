@@ -12,34 +12,38 @@ class Systeme : public Dessinable
 	
 public :
 
+
+Systeme (Systeme const& S);
+
 // Constructeur de copie nécessaire 
 Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
-: ptr_champs(*Ch), ptr_ciel(*C), ptr_hill(*M) {}
+: ptr_champs(new ChampsPotentiels(Ch)), ptr_ciel(new Ciel(C)), ptr_hill(new Montagne(M)) {}
 
 // Destructeur de la classe : delete chaque attributs car ce sont des pointeurs
-~Systeme() {}
-
-{ 
-	delete ptr_champs;
-	delete ptr_ciel;
-	delete ptr_hill;
+~Systeme()
+{
+    ptr_champs->~ChampsPotentiels();
+    delete ptr_champs;
+    ptr_champs = nullptr;
+    delete ptr_ciel;
+    delete ptr_hill;
 }
 
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Fait appel aux méthodes affiche() des différents composants du système
-virtual void affiche ();
+std::ostream& affiche (std::ostream& sortie) const;
 
 // Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système 
-void demarre ();
+void demarre (SupportADessin& a_dessiner);
 
 // Méthode dessine_sur() héritée de Dessinable
-virtual void dessine_sur();
+virtual void dessine_sur(SupportADessin& a_dessiner) override;
 
 private : 
 
 // Fait évoluer le système (surtout nuage?)
-void evolue ();
+void evolue (SupportADessin& a_dessiner);
 
 //--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 
@@ -49,8 +53,9 @@ Montagne* ptr_hill;
 
 //--------------------------------------------------------------OPERATEUR-------------------------------------------------------------//
 
-friend std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys); 
 	
 // Interdiction de la copie: conceptuellement problématique
 Systeme(Systeme& systeme) = delete; 
 };
+
+std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys);

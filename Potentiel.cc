@@ -7,8 +7,9 @@ using namespace std;
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Affiche les attributs d'un potentiel
-void Potentiel:: affiche() 
+void Potentiel:: affiche(ostream& sortie) const
 {
-	cout << poten << " " << laplacien << endl; 
+    sortie << poten << " " << laplacien << endl;
 }
+
 

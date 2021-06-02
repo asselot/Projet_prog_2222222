@@ -21,8 +21,6 @@ class Montagne : public Dessinable
 	
 	double ey; // Etalement en y de la montagne 
 	
-	//void affiche_para(std :: ostream& sortie)const; // Méthode permettant d'afficher les attributs d'une montagne en privé car utilisée par la surcharge d'opérateur <<
-
 
 	
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
@@ -50,7 +48,7 @@ class Montagne : public Dessinable
 	
 };
 
-	std::ostream& operator<<(std::ostream& sortie, Montagne& montagne); 
+    std::ostream& operator<<(std::ostream& sortie, Montagne const& montagne);
 
 
 class ChaineDeMontagnes : public Montagne

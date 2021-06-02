@@ -40,7 +40,7 @@ void Montagne:: set_montagne(double x, double y, double h, double ox, double oy)
 	
 }*/
 
-std::ostream& operator<<(ostream& sortie, Montagne& montagne) 
+std::ostream& operator<<(ostream& sortie, Montagne const& montagne)
 {
 	sortie << " une montagne : " << endl;
 	sortie << " centre de la montagne (" << montagne.get_x0() << "," << montagne.get_y0() << ");" << endl;
@@ -49,7 +49,6 @@ std::ostream& operator<<(ostream& sortie, Montagne& montagne)
 	sortie << " étalement en y : " << montagne.get_ey() << endl;
 	return sortie;
 }
-
 
 
 // Méthode dessine_sur redéfinie

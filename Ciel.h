@@ -38,4 +38,4 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
     virtual ~Ciel() = default;
 };
 
-	
+

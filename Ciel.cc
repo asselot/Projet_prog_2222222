@@ -24,7 +24,7 @@ CubedAir Ciel:: precedente(double& pas_temps, double& x, double& y, double& z)
 	// Si on se trouve au-delà de la boîte, l'état du nuage devient false (on ne se trouve plus dans le ciel)
 	if ((x > Nx) or (y > Ny) or (z > Nz))
 	{
-		tablO[x][y][z].etat == false;
+        tablO[x][y][z].etat(z, pas) == false;
 		return tablO[x][y][z];
 	}
 	else
@@ -37,13 +37,13 @@ CubedAir Ciel:: precedente(double& pas_temps, double& x, double& y, double& z)
 // Initialise l'état des cubes d'air
   void Ciel :: initialise()
   {
-      for (unsigned int i(0); i < get_Nx(); ++i)
+      for (unsigned int i(0); i < Nx; ++i)
       {
-          for (unsigned int j(0); j < get_Ny(); ++j)
+          for (unsigned int j(0); j < Ny; ++j)
           {
-              for (unsigned int k(0); k < get_Nz(); ++k)
+              for (unsigned int k(0); k < Nz; ++k)
               {
-                  tablO[i][j][k].set_etat(i, j, k);
+                  tablO[i][j][k].etat(k, pas);
               }
 
           }
@@ -69,8 +69,10 @@ CubedAir Ciel:: precedente(double& pas_temps, double& x, double& y, double& z)
 
               for (unsigned int k(0); k < Nz; ++k)
               {
-                  tablO[i][j].push_back(CubedAir ());
+
+                  tablO[i][j].push_back(CubedAir(champ.vitesse(i, j, k)));
                   tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
+
               }
           }
       }
@@ -81,16 +83,17 @@ CubedAir Ciel:: precedente(double& pas_temps, double& x, double& y, double& z)
   Ciel :: Ciel(double const& Nx, double const& Ny, double const& Nz, double const& pas)
       : Boite3D (Nx, Ny, Nz, pas)
   {
-      for (int i(0); i < champ.get_Nx(); ++i)
+      for (int i(0); i < get_Nx(); ++i)
       {
           tablO.push_back(std::vector<std::vector<CubedAir>>());
-          for ( int j(0); j < champ.get_Ny(); ++j)
+          for ( int j(0); j < get_Ny(); ++j)
           {
               tablO[i].push_back(std::vector<CubedAir>());
-              for ( int k(0); k < champ.get_Nz(); ++k)
+              for ( int k(0); k < get_Nz(); ++k)
               {
-                  tablO[i][j].push_back(CubedAir(champ.vitesse(i, j, k)));
-                  tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
+
+                  tablO[i][j].push_back(CubedAir ());
+                  tablO[i][j][k].set_vitesse(0., 0., 0.);
               }
           }
       }

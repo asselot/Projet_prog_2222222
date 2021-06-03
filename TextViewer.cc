@@ -7,17 +7,17 @@
 
 // afficher les différents composants de Systeme, Montagne et Ciel
 
-void TextViewer :: dessine(Systeme const& Sys) const
+void TextViewer :: dessine(Systeme const& Sys)
 {
     flot << Sys;
 }
 
-void TextViewer :: dessine(Montagne const& montagne) const
+void TextViewer :: dessine(Montagne const& montagne)
 {
     flot<< montagne;
 }
 
-void TextViewer :: dessine(Ciel const& ciel) const
+void TextViewer :: dessine(Ciel const& ciel)
 {
     flot << ciel;
 }
@@ -25,5 +25,3 @@ void TextViewer :: dessine(Ciel const& ciel) const
 
 //Constructeur de classe
 TextViewer :: TextViewer (std::ostream& flot) : SupportADessin(), flot(flot) {}
-
-

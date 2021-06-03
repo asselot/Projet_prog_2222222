@@ -3,7 +3,7 @@
 #include "Potentiel.h"
 
 using namespace std;
-	
+
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Affiche les attributs d'un potentiel
@@ -43,8 +43,8 @@ double Potentiel :: laplacien_norme2() const
 
 void Potentiel:: set_laplacien(const double& x, const double& y)
 {
-	Vecteur2D V(x, y);
-	set_laplacien(V);
+    Vecteur2D V(x, y);
+    set_laplacien(V);
 }
 
 void Potentiel:: set_poten(const Vecteur2D& V)
@@ -54,11 +54,12 @@ void Potentiel:: set_poten(const Vecteur2D& V)
 
 void Potentiel:: set_poten(const double& x, const double& y)
 {
-	Vecteur2D V(x, y);
-	set_poten(V);
+    Vecteur2D V(x, y);
+    set_poten(V);
 }
 
  void Potentiel:: set_laplacien(const Vecteur2D& V)
  {
      laplacien = V;
  }
+

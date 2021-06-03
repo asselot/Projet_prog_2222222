@@ -11,4 +11,3 @@ class Dessinable //  permet de classer les objets qui sont dessinable tout les o
 	
 	
 };
-

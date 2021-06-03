@@ -34,12 +34,15 @@ class CubedAir
 
     void set_vitesse(double coordx, double coordy, double coordz); // Associe les valeurs données aux coordonnées de la vitesse du cube
 
-    void affiche(std::ostream& sortie, unsigned int pz, double pas) const; // Affiche les différents attributs du cube d'air
+    void afficher(std::ostream& sortie, unsigned int pz, double pas) const; // Affiche les différents attributs du cube d'air
 
     double vitesse_norme() const; // Calcule la norme de la vitesse d'un cube d'air
 
     double v2() const;
 
     void affiche_etat(unsigned int pz, double pas) const; // Affiche 1 si le cube est un nuage, 0 sinon
+
+    void affiche(std::ostream& sortie) const; // Affiche les différents attributs du cube d'air
+
 
 };

@@ -27,24 +27,24 @@ std::ostream& operator<<(std::ostream& sortie, Potentiel const& P)
     return sortie;
 }
 
-Vecteur2D& Potentiel:: get_laplacien() const
+Vecteur2D Potentiel:: get_laplacien() const
 {
     return laplacien;
 }
-Vecteur2D& Potentiel:: get_poten() const
+Vecteur2D Potentiel:: get_poten() const
 {
     return poten;
 }
 
-double Vecteur2D :: laplacien_norme2() const
+double Potentiel :: laplacien_norme2() const
 {
     return laplacien.norme2();
 }
 
 void Potentiel:: set_laplacien(const double& x, const double& y)
 {
-  laplacien.coord_x = x;
-  laplacien.coord_y = y;
+	Vecteur2D V(x, y);
+	set_laplacien(V);
 }
 
 void Potentiel:: set_poten(const Vecteur2D& V)
@@ -54,8 +54,8 @@ void Potentiel:: set_poten(const Vecteur2D& V)
 
 void Potentiel:: set_poten(const double& x, const double& y)
 {
-  poten.coord_x = x;
-  poten.coord_y = y;
+	Vecteur2D V(x, y);
+	set_poten(V);
 }
 
  void Potentiel:: set_laplacien(const Vecteur2D& V)

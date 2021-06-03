@@ -15,15 +15,19 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 	friend class CubedAir;
 	public:
 	
-    Ciel(const ChampsPotentiels& champ) : Boite3D<CubedAir>(champ.get_Nx(), champ.get_Ny(), champ.get_Nz(), champ.get_pas()) // Constructeur du ciel à partir d'un champ de potentiels donné
-    {//rajouter le constructeur des cubes d'air
+    Ciel(ChampsPotentiels const& champ) : Boite3D<CubedAir>(champ.get_Nx(), champ.get_Ny(), champ.get_Nz(), champ.get_pas()) // Constructeur du ciel à partir d'un champ de potentiels donné
+    {
         for (int i(0); i < champ.get_Nx(); ++i)
 		{
+			tablO.push_back(std::vector<std::vector<CubedAir>>());
             for ( int j(0); j < champ.get_Ny(); ++j)
 			{
+				tablO[i].push_back(std::vector<CubedAir>());
                 for ( int k(0); k < champ.get_Nz(); ++k)
 				{
-					tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
+					//CubedAir cube(CubedAir(champ.vitesse(i, j, k)));
+					tablO[i][j].push_back(CubedAir(champ.vitesse(i, j, k)));
+					//tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
 				}
 			}
 		}
@@ -43,6 +47,8 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 		}
      }
     }
+    
+    //void initialise(const ChampsPotentiels& champi);
 	
 	CubedAir precedente(double pas_temps, double x, double y, double z); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
 

@@ -80,15 +80,19 @@ void CubedAir:: set_vitesse(double coordx, double coordy, double coordz)
 }
 
 // Affiche les différents attributs du cube d'air
-void CubedAir:: affiche(ostream& sortie, unsigned int pz, double pas) const
+void CubedAir:: afficher(ostream& sortie, unsigned int pz, double pas) const
 {
 sortie << vitesse_norme()*vitesse_norme() << " " << enthalpie(pz, pas) << " " << temperature(pz, pas) << " " << pression(pz, pas) << " " << pression_partielle(pz, pas) << " " << pression_vapeur_saturante(pz, pas) << " ";
         affiche_etat(pz, pas);
 }
 
 // Constructeur qui met la vitesse des cubes à 0
-CubedAir() { vitesse_cubedair[0] = 0; vitesse_cubedair[1] = 0; vitesse_cubedair[2] = 0; }
+CubedAir :: CubedAir() { vitesse_cubedair[0] = 0; vitesse_cubedair[1] = 0; vitesse_cubedair[2] = 0; }
 
 // Constructeur à partir de la vitesse
-CubedAir(std::array<double, 3> vit_init) : vitesse_cubedair(vit_init) {}
+CubedAir :: CubedAir(std::array<double, 3> vit_init) : vitesse_cubedair(vit_init) {}
 
+void CubedAir:: affiche(ostream& sortie) const
+{
+
+}

@@ -27,6 +27,8 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 				{
 					//CubedAir cube(CubedAir(champ.vitesse(i, j, k)));
 					tablO[i][j].push_back(CubedAir(champ.vitesse(i, j, k)));
+					tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
+					//std::cout << champ.vitesse(i, j, k)[0] << " " << champ.vitesse(i, j, k)[1] << " " << champ.vitesse(i, j, k)[2] << std::endl;
 					//tablO[i][j][k].set_vitesse(champ.vitesse(i, j, k)[0], champ.vitesse(i, j, k)[1], champ.vitesse(i, j, k)[2]);
 				}
 			}
@@ -50,7 +52,7 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
     
     //void initialise(const ChampsPotentiels& champi);
 	
-	CubedAir precedente(double pas_temps, double x, double y, double z); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
+	CubedAir precedente(double pas_temps, double x, double y, double z, double pas); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
 
     virtual void dessine_sur(SupportADessin& a_dessiner) override;
 		

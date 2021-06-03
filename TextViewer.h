@@ -17,9 +17,9 @@ public :
 // Constructeur de classe
 TextViewer (std::ostream& flot);
 		
-virtual void dessine(Systeme const& Sys) const;
-virtual void dessine(Montagne const& montagne) const;
-virtual void dessine(Ciel const& ciel) const;
+virtual void dessine(Systeme const& Sys) ;
+virtual void dessine(Montagne const& montagne) ;
+virtual void dessine(Ciel const& ciel) ;
 
 private : 
 

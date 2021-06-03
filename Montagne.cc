@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <vector>
 #include "Montagne.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
@@ -8,7 +9,7 @@ using namespace std;
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Méthode virtuelle qui calcule l'altitude d'une montagne pure
-double Montagne:: altitude(double a, double b) const 
+double Montagne:: altitude(double const& a, double const& b) const 
 {
 	double altitude(H*exp(-((a-x0)*(a-x0))/(2*ex*ex)-((b-y0)*(b-y0))/(2*ey*ey)));
 	if (altitude < 0.5) { return 0; }
@@ -16,7 +17,7 @@ double Montagne:: altitude(double a, double b) const
 }
 
 // Méthode virtuelle permettant de modifier les attributs d'une montagne avec les valeurs passées en arguments
-void Montagne:: set_montagne(double x, double y, double h, double ox, double oy) 
+void Montagne:: set_montagne(double const& x, double const& y, double const& h, double const& ox, double const& oy) 
 {
 	x0 = x;
 	y0 = y;
@@ -58,54 +59,54 @@ void Montagne::  dessine_sur(SupportADessin& a_dessiner)
 	
 }
 
-double Montagne:: get_x0()
+double Montagne:: get_x0() const
 {
 	return x0;
 }
 	
-double Montagne:: get_y0()
+double Montagne:: get_y0() const
 {
 	return y0;
 }
 	
-double Montagne:: get_H()
+double Montagne:: get_H() const
 {
 	return H;
 }
 	
-double Montagne:: get_ex()
+double Montagne:: get_ex() const
 {
 	return ex;
 }
 	
-double Montagne:: get_ey()
+double Montagne:: get_ey() const
 {
 	return ey;
 }
 
 // Méthode donnant aux attributs de la i-ème montagne simple de la chaîne les valeurs passées en arguments
-void ChaineDeMontagnes:: set_montagne(double x, double y, double h, double ox, double oy, const unsigned int &indice) 
+void ChaineDeMontagnes:: set_montagne(Montagne const& montagne) 
 {
-	montagnes_simples[indice].set_montagne(x, y, h, ox, oy);
+	montagnes_simples.push_back(montagne);
 }
 
 // Méthode remplaçant la i-ème sous-chaîne de la chaîne par celle passée en argument 
-void ChaineDeMontagnes:: set_montagne(ChaineDeMontagnes chaine, const unsigned int &indice) 
+/*void ChaineDeMontagnes:: set_montagne(ChaineDeMontagnes const& chaine) 
 {
-	montagnes_simples[indice] = chaine;
-}
+	montagnes_simples.push_back(chaine);
+}*/
 
 // Méthode virtuelle qui retourne le maximum des altitudes des montagnes simples et des sous-chaînes qui composent la chaîne 
-double ChaineDeMontagnes:: altitude(double a, double b) const 
+double ChaineDeMontagnes:: altitude(double const& a, double const& b) const 
 {
-	double retour;
-	if ((nombre_montagnes == 0) && (nombre_chaines == 0)) // Cas où il n'y a pas de montagne ni de sous-chaîne
+	double retour(0);
+	/*if ((nombre_montagnes == 0) && (nombre_chaines == 0)) // Cas où il n'y a pas de montagne ni de sous-chaîne
 	{
 		retour = 0;
 	}
 	else
 	{
-		if (montagnes_simples.size() == 0) // Si il n'y a pas de montagnes simples, on travaille uniquement sur les sous-chaînes 
+		/*if (montagnes_simples.size() == 0) // Si il n'y a pas de montagnes simples, on travaille uniquement sur les sous-chaînes 
 		{
 			retour = chaines_simples[0].altitude(a, b); 
 			for (size_t j(0); j < chaines_simples.size(); ++j)
@@ -137,7 +138,7 @@ double ChaineDeMontagnes:: altitude(double a, double b) const
 			else
 			{
 				retour = chaines_simples[0].altitude(a, b);
-			}
+			}*/
 
 			for (size_t i(0); i < montagnes_simples.size(); ++i)
 			{
@@ -147,20 +148,20 @@ double ChaineDeMontagnes:: altitude(double a, double b) const
 				}
 			}
 
-			for (size_t j(0); j < chaines_simples.size(); ++j)
+			/*for (size_t j(0); j < chaines_simples.size(); ++j)
 			{
 				if (chaines_simples[j].altitude(a, b) > retour)
 				{
 					retour = chaines_simples[j].altitude(a, b); //Calcul du maximum des altitudes dans les deux tableaux 
 				}
-			}
-		}
+			}*/
 		
-	}
+		
+	
 	return retour;
 }
 
-// Retourne le nombre de montagnes simples qui composent la chaîne 
+/*// Retourne le nombre de montagnes simples qui composent la chaîne 
 int ChaineDeMontagnes:: get_nbre_montagnes() 
 {
 	return nombre_montagnes;
@@ -170,5 +171,5 @@ int ChaineDeMontagnes:: get_nbre_montagnes()
 int ChaineDeMontagnes:: get_nbre_chaines() 
 {
 	return nombre_chaines;
-}
+}*/
 

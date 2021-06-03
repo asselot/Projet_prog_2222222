@@ -15,46 +15,51 @@ double CubedAir:: vitesse_norme() const
 	return sqrt(vitesse_cubedair[0]*vitesse_cubedair[0] + vitesse_cubedair[1]*vitesse_cubedair[1] + vitesse_cubedair[2]*vitesse_cubedair[2]);
 }
 
-// Calcule l'enthalpie en un point donné
-double CubedAir:: enthalpie(unsigned int px, unsigned int py, unsigned int pz) const
+double CubedAir:: v2() const
 {
-	return Physique::cte - Physique::g*pz - 0.5*vitesse_norme()*vitesse_norme();
+	return vitesse_cubedair[0]*vitesse_cubedair[0] + vitesse_cubedair[1]*vitesse_cubedair[1] + vitesse_cubedair[2]*vitesse_cubedair[2];
+}
+
+// Calcule l'enthalpie en un point donné
+double CubedAir:: enthalpie(unsigned int pz, double pas) const
+{
+	return Physique::cte - Physique::g*pz*pas - 0.5*v2();
 }
 
 // Calcule la température en un point donné
-double CubedAir:: temperature(unsigned int px, unsigned int py, unsigned int pz) const
+double CubedAir:: temperature(unsigned int pz, double pas) const
 {
-	return (2.0/7.0)*enthalpie(px, py, pz)*(Physique::Mair_sec/Physique::R);
+	return (2.0/7.0)*enthalpie(pz, pas)*(Physique::Mair_sec/Physique::R);
 }
 
 // Calcule la pression en un point donné
-double CubedAir:: pression(unsigned int px, unsigned int py, unsigned int pz) const
+double CubedAir:: pression(unsigned int pz, double pas) const
 {
-	return (Physique::Pinfini*pow(Physique::Tinfini, -3.5)*pow(temperature(px, py, pz), 3.5));
+	return (Physique::Pinfini*pow(Physique::Tinfini, -3.5)*pow(temperature(pz, pas), 3.5));
 }
 
 // Calcule la pression de l'eau (Peau)
-double CubedAir:: pression_partielle(unsigned int px, unsigned int py, unsigned int pz) const
+double CubedAir:: pression_partielle(unsigned int pz, double pas) const
 {
-	return ((Physique::tau*pression(px, py, pz))/((Physique::Meau/Physique::Mair_sec) + Physique::tau));
+	return ((pression(pz, pas))*((Physique::tau)/(((Physique::Meau)/(Physique::Mair_sec)) + Physique::tau)) -16);
 }
 
 // Calcule la pression de la rosée (Prosée)
-double CubedAir:: pression_vapeur_saturante(unsigned int px, unsigned int py, unsigned int pz) const
+double CubedAir:: pression_vapeur_saturante(unsigned int pz, double pas) const
 {
-	return Physique::Pref*exp(13.96 - 5208.0/temperature(px, py, pz));
+	return Physique::Pref*exp(13.96 - 5208.0/temperature(pz, pas));
 }
 
 // Détermine l'état du cube d'air, elle retourne true si il est sous forme de nuage 
-bool CubedAir:: etat(unsigned int px, unsigned int py, unsigned int pz) const
+bool CubedAir:: etat(unsigned int pz, double pas) const
 {
-	return (pression_partielle(px, py, pz) > pression_vapeur_saturante(px, py, pz));
+	return (pression_partielle(pz, pas) > pression_vapeur_saturante(pz, pas));
 }
 
 // Affiche 1 si le cube est un nuage, 0 sinon
-void CubedAir:: affiche_etat(unsigned int px, unsigned int py, unsigned int pz) const
+void CubedAir:: affiche_etat(unsigned int pz, double pas) const
 {
-	if (etat(px, py, pz))
+	if (etat(pz, pas))
 	{
 		cout << 1 << endl;
 	}
@@ -73,8 +78,8 @@ void CubedAir:: set_vitesse(double coordx, double coordy, double coordz)
 }
 
 // Affiche les différents attributs du cube d'air 
-void CubedAir:: affiche(ostream& sortie, unsigned int px, unsigned int py, unsigned int pz) const
+void CubedAir:: affiche(ostream& sortie, unsigned int pz, double pas) const
 {
-    sortie << vitesse_norme()*vitesse_norme() << " " << enthalpie(px, py, pz) << " " << temperature(px, py, pz) << " " << pression(px, py, pz) << " " << pression_partielle(px, py, pz) << " " << pression_vapeur_saturante(px, py, pz) << " ";
-	affiche_etat(px, py, pz);
+    sortie << vitesse_norme()*vitesse_norme() << " " << enthalpie(pz, pas) << " " << temperature(pz, pas) << " " << pression(pz, pas) << " " << pression_partielle(pz, pas) << " " << pression_vapeur_saturante(pz, pas) << " ";
+	affiche_etat(pz, pas);
 }

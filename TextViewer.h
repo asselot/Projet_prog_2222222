@@ -17,9 +17,10 @@ public :
 // Constructeur de classe
 TextViewer (std::ostream& flot);
 		
-virtual void dessine(Systeme const& Sys) ;
-virtual void dessine(Montagne const& montagne) ;
-virtual void dessine(Ciel const& ciel) ;
+virtual void dessine(Systeme const& Sys) override;
+virtual void dessine(Montagne const& montagne) override;
+virtual void dessine(ChaineDeMontagnes const& chaine) override;
+virtual void dessine(Ciel const& ciel) override;
 
 private : 
 

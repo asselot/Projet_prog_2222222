@@ -44,28 +44,10 @@ virtual void dessine_sur(SupportADessin& a_dessiner) override;
 
 ChampsPotentiels champs;
 Ciel ciel;
-Montagne montagne;
-
-//--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
-/*
-ChampsPotentiels* ptr_champs;
-Ciel* ptr_ciel;
-Montagne* ptr_hill;
-*/
-//--------------------------------------------------------------OPERATEUR-------------------------------------------------------------//
-
-// Constructeur de copie nécessaire
-/*Systeme (Montagne& M, Ciel& C, ChampsPotentiels& Ch)
-: ptr_champs(new ChampsPotentiels(Ch)), ptr_ciel(new Ciel(C)), ptr_hill(new Montagne(M)) {}*/
-
-//Systeme(Montagne& M, ChampsPotentiels& Ch, Ciel& C);
-
-// Destructeur de la classe : delete chaque attributs car ce sont des pointeurs
-
-
-
+ChaineDeMontagnes chaine;
 
 };
 
-std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys);
+//--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 
+std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys);

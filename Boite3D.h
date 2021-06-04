@@ -12,7 +12,6 @@ class Boite3D
 {
 	
 	protected:
-
 	unsigned int Nx; // Nombre de cubes dans la boîte dans la direction x
 	 
 	unsigned int Ny; // Nombre de cubes dans la boîte dans la direction y
@@ -28,11 +27,8 @@ class Boite3D
 
 
 	public:
-
-    // Constructeur d'une Boîte3D
-    Boite3D(unsigned int nomx, unsigned int nomy, unsigned int nomz, double ps)
-        : Nx(nomx), Ny(nomy), Nz(nomz), pas(ps)
-    {
+    Boite3D(unsigned int nomx, unsigned int nomy, unsigned int nomz, double ps) : Nx(nomx), Ny(nomy), Nz(nomz), pas(ps) {
+		
         std::vector<T> v1D(Nx);
         std::vector<std::vector<T>> v2D(Ny,v1D);
         std::vector<std::vector<std::vector<T>>> v3D(Nz, v2D);
@@ -40,16 +36,17 @@ class Boite3D
 
 
 
-    }
+    } // Constructeur d'une Boîte3D
 	
     int get_Nx() const { return Nx; } // Retourne le nombre de cubes selon x
 	
-    int get_Ny() const {return Ny; } // Retourne le nombre de cubes selon y
+    int get_Ny() const { return Ny; } // Retourne le nombre de cubes selon y
 	
     int get_Nz() const { return Nz; } // Retourne le nombre de cubes selon z
 	
     double get_pas() const { return pas; } // Retourne le pas
 
+    //virtual void affiche() const; // Méthode permettant d'afficher une instance
 
     std::vector<std::vector<std::vector<T>>> get_tablO() const { return tablO; } // Retourne le tableau tridimensionnel
 	
@@ -66,17 +63,21 @@ std::ostream& operator << (std::ostream& sortie, Boite3D <T> const& b)
     sortie << "Nx: " << b.get_Nx() << " Ny : " << b.get_Ny() << " Nz : " << b.get_Nz() << std:: endl;
     sortie << "Le pas des cubes :" << b.get_pas() << std::endl;
 
-    for (int x(0); x < b.get_Nx(); ++x)
+    for (size_t x(0); x < b.get_Nx(); ++x)
     {
-        for ( int y(0); y < b.get_Ny(); ++y)
+        for (size_t y(0); y < b.get_Ny(); ++y)
         {
-            for (int z(0); z < b.get_Nz(); ++z)
+            for (size_t z(0); z < b.get_Nz(); ++z)
             {
-
+					std::cout << x << " " << y << " " << z << " ";
                     (b.get_tablO()[x][y][z]).affiche(sortie);
 
             }
         }
     }
-return sortie;
+    
+    return sortie;
+
 }
+
+

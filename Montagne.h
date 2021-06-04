@@ -55,6 +55,8 @@ class ChaineDeMontagnes : public Montagne
 		montagnes_simples.push_back(mont);
 	}
 	
+	ChaineDeMontagnes(const ChaineDeMontagnes& chaine) : Montagne(chaine), montagnes_simples(chaine.montagnes_simples) {}
+	
 	void set_montagne(Montagne const& montagne); // Méthode donnant aux attributs de la i-ème montagne simple de la chaîne les valeurs passées en arguments
 
 	double altitude(double const& a, double const& b) const override; // Redéfinition de la méthode virtuelle qui retourne le maximum des altitudes des montagnes simples et des sous-chaînes qui composent la chaîne 

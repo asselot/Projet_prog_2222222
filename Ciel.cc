@@ -54,11 +54,10 @@ using namespace std;
   }
 
   // Constructeur à partir d'un ciel, déjà initialisé, dont les cubes d'air sont défins
- Ciel :: Ciel (Ciel const& C)
-     : Boite3D (C.get_Nx(), C.get_Ny(), C.get_Nz(), C.get_pas())
- {
-  tablO = C.get_tablO();
- }
+Ciel::Ciel(Ciel const& C) : Boite3D (C.get_Nx(), C.get_Ny(), C.get_Nz(), C.get_pas())
+{
+	tablO = C.get_tablO();
+}
 
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 

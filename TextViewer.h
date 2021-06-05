@@ -16,7 +16,8 @@ public :
 
 // Constructeur de classe
 TextViewer (std::ostream& flot);
-		
+
+// Méthodes pour dessiner les différents objets en mode texte - héritées de SupportADessin -
 virtual void dessine(Systeme const& Sys) override;
 virtual void dessine(Montagne const& montagne) override;
 virtual void dessine(ChaineDeMontagnes const& chaine) override;

@@ -36,4 +36,10 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 		
     // Destructeur de la classe
     virtual ~Ciel() = default;
+
+    // Affiche les paramètres du ciel
+     void affiche(std::ostream& sortie) const;
 };
+
+// Surcharge de l'opérateur <<
+std::ostream& operator<<(std::ostream& sortie, const Ciel& ciel);

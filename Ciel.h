@@ -9,12 +9,9 @@
 
 class Ciel : public Boite3D<CubedAir>, public Dessinable
 {
-	
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
-
-
-
 	public:
+
+//--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
 
     // Constructeur du ciel à partir d'un champ de potentiels donné (avec initialisation des CubedAirs)
     Ciel(ChampsPotentiels const& champ);
@@ -24,6 +21,11 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 
     // Constructeur à partir d'un ciel (avec initialisation des CubedAirs)
     Ciel(Ciel const& C);
+    	
+    // Destructeur de la classe
+    virtual ~Ciel() = default;
+    
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
     // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
     CubedAir precedente(double& pas_temps, double& x, double& y, double& z);
@@ -33,9 +35,6 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 
     // Méthode héritée de Dessinable
     virtual void dessine_sur(SupportADessin& a_dessiner) override;
-		
-    // Destructeur de la classe
-    virtual ~Ciel() = default;
 
     // Affiche les paramètres du ciel
      void affiche(std::ostream& sortie) const;

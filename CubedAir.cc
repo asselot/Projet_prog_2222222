@@ -6,11 +6,14 @@
 using namespace Physique;
 using namespace std;
 
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
+//--------------------------------------------------------------CONSTRUCTEURS----------------------------------------------------------//
 
+// Constructeur à vitesse nulle
 CubedAir::CubedAir() { vitesse_cubedair[0] = 0; vitesse_cubedair[1] = 0; vitesse_cubedair[2] = 0; }
 
 CubedAir::CubedAir(std::array<double, 3> vit_init) : vitesse_cubedair(vit_init) {}
+
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
 // Calcule la norme de la vitesse d'un cube d'air
 double CubedAir:: vitesse_norme() const

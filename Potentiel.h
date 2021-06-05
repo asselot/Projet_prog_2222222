@@ -7,13 +7,13 @@ class Potentiel
 {
 
     private:
+    
     Vecteur2D poten; // Potentiel en lui-même
     Vecteur2D laplacien; // Laplacien qui lui est associé
 
-
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
-
     public:
+    
+//--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
 
     // Constructeur initialisant les deux vecteurs à des vecteurs nuls
     Potentiel();
@@ -23,6 +23,11 @@ class Potentiel
 
     // Constructeur d'un potentiel à partir de vecteurs
     Potentiel(Vecteur2D const& p, Vecteur2D const& l);
+    
+    // Constructeur par défaut
+     ~Potentiel() = default;
+    
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
     // Affiche les attributs d'un potentiel
     std::ostream& affiche(std :: ostream& sortie) const;

@@ -12,19 +12,28 @@ class Ciel : public Boite3D<CubedAir>, public Dessinable
 	
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
-	friend class CubedAir;
-	public:
-	
-    Ciel(ChampsPotentiels const& champ);
-    Ciel(double Lx, double Ly, double Lz, double lambda);
-    
-    //void initialise(const ChampsPotentiels& champi);
-	
-	CubedAir precedente(double const& pas_temps, double& x, double& y, double& z, double const& pas); // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
 
+
+	public:
+
+    // Constructeur du ciel à partir d'un champ de potentiels donné (avec initialisation des CubedAirs)
+    Ciel(ChampsPotentiels const& champ);
+
+    // Constructeur à partir de dimensions données (avec initialisation des CubedAirs)
+    Ciel(double const& Nx, double const& Ny, double const& Nz, double const& pas);
+
+    // Constructeur à partir d'un ciel (avec initialisation des CubedAirs)
+    Ciel(Ciel const& C);
+
+    // Calcul du déplacement du nuage pendant un temps donné à partir d'un point donné
+    CubedAir precedente(double& pas_temps, double& x, double& y, double& z);
+
+    // Initialise l'état des cubes d'air
+    void initialise();
+
+    // Méthode héritée de Dessinable
     virtual void dessine_sur(SupportADessin& a_dessiner) override;
 		
-	// constructeurs+ dessinesur+ affichage
+    // Destructeur de la classe
+    virtual ~Ciel() = default;
 };
-
-	

@@ -102,6 +102,10 @@ class Montagne : public Dessinable
 
         // Retourne la taille de la chaine
         unsigned int  get_taille() const;
+	
+	 // Ajoute toute les montagnes d'un tableau à la chaine
+        ChaineDeMontagnes implementation_de_la_chaine(std :: vector<Montagne> const& V);
+
 
 
     };

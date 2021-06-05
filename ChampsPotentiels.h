@@ -16,7 +16,7 @@ class ChampsPotentiels : public Boite3D<Potentiel>
 
     void iteration(const ChaineDeMontagnes& chaine, const double& E = 0.1);
 
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
+//--------------------------------------------------------------CNSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
 
     public:
 
@@ -28,6 +28,8 @@ class ChampsPotentiels : public Boite3D<Potentiel>
 
     // Destructeur de la classe
     ~ChampsPotentiels();
+    
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
     // Initialise les potentiels du champ potentiel
     void initialise(double vi, const Montagne& mont);

@@ -11,15 +11,16 @@ class ChampsPotentiels : public Boite3D<Potentiel>
 
     private:
 
-    double erreur(); // Retourne la somme des carrés des normes des vecteurs laplaciens
+    // Retourne la somme des carrés des normes des vecteurs laplaciens
+    double erreur();
 
-    void iteration(const ChaineDeMontagnes& chaine, const double& E = 0.1); // Aucune idée
+    void iteration(const ChaineDeMontagnes& chaine, const double& E = 0.1);
 
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
     public:
 
-    // Constructeur à partir des dimensions de la boîte
+    // Constructeur du champ à partir des dimensions de la boîte avec initialisation du laplacien
     ChampsPotentiels(unsigned int nox = 30, unsigned int noy = 30, unsigned int noz = 30, double p = 1.0);
 
     // Constructeur à partir d'es dimensions de la boîte'un autre champ
@@ -49,4 +50,3 @@ class ChampsPotentiels : public Boite3D<Potentiel>
 
 // Surcharge de l'opérateur <<
 std::ostream& operator<<(std::ostream& sortie, const ChampsPotentiels& champ);
-

@@ -1,5 +1,16 @@
-// Destructeur de la classe
-ChampsPotentiels::~ChampsPotentiels() {}
+#include "ChampsPotentiels.h"
+#include "constantes.h"
+#include <cmath>
+
+using namespace std;
+using namespace Physique;
+
+//--------------------------------------------------------------CONSTRUCTEURS-------------------------------------------------------------//
+
+
+{
+
+}
 
 // Constructeur du champ à partir des dimensions de la boîte avec initialisation du laplacien
 ChampsPotentiels::ChampsPotentiels(unsigned int nox, unsigned int noy, unsigned int noz, double p) : Boite3D(nox, noy, noz, p)
@@ -186,11 +197,11 @@ void ChampsPotentiels:: affiche(std::ostream& sortie) const
     sortie << "Nx: " << Nx << " Ny : " << Ny << " Nz : " << Nz << std:: endl;
     sortie << "Le pas des cubes :" << pas << std::endl;
 
-    for (int x(0); x < Nx; ++x)
+    for (size_t x(0); x < Nx; ++x)
     {
-        for ( int y(0); y < Ny; ++y)
+        for ( size_t y(0); y < Ny; ++y)
         {
-            for (int z(0); z < Nz; ++z)
+            for (size_t z(0); z < Nz; ++z)
             {
 
                     tablO[x][y][z].affiche(sortie);
@@ -207,3 +218,5 @@ std::ostream& operator << (std::ostream& sortie, const ChampsPotentiels& champ)
      champ.affiche(sortie);
      return sortie;
 }
+
+

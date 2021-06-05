@@ -12,9 +12,7 @@ class ChaineDeMontagnes;
 
 class SupportADessin 
 {
-	
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
-	
+		
 	public:
 	
     virtual ~SupportADessin() = default;

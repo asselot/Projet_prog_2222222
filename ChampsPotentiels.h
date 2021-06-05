@@ -24,7 +24,7 @@ class ChampsPotentiels : public Boite3D<Potentiel>
     // Constructeur du champ à partir des dimensions de la boîte avec initialisation du laplacien
     ChampsPotentiels(unsigned int nox = 30, unsigned int noy = 30, unsigned int noz = 30, double p = 1.0);
 
-    // Constructeur à partir d'es dimensions de la boîte'un autre champ
+    // Constructeur à partir d'un autre champ
     ChampsPotentiels(ChampsPotentiels const& C);
 
     // Destructeur de la classe

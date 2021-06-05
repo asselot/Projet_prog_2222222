@@ -7,16 +7,12 @@
 class ChaineDeMontagnes;
 
 using namespace std;
+
 //--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEURS-------------------------------------------------------------//
 
 // Constructeur d'une montagne à partir d'un centre, une hauteur et un certain étalement
 Montagne :: Montagne(double const& x, double const& y, double const& h, double const& ox, double const& oy, int const& dim)
     : x0(x), y0(y), H(h), ex(ox), ey(oy), dimension(dim) {}
-
-// Constructeur d'une montagne à partir d'une montagne
-/*Montagne :: Montagne(const Montagne& montagne)
-    : Montagne(x0, y0, H, ex, ey, dimension)
-{}*/
 
 // Constructeur d'une chaine à partir d'une montagne
 ChaineDeMontagnes :: ChaineDeMontagnes(Montagne const& mont)
@@ -33,13 +29,6 @@ ChaineDeMontagnes :: ChaineDeMontagnes(double const& x, double const& y, double 
  ++ taille ;
 
 }
-
-// Constructeur d'une chaine à partir d'une autre chaine
-/*ChaineDeMontagnes :: ChaineDeMontagnes( ChaineDeMontagnes const& ch)
-{
-    montagnes_simples = ch.montagnes_simples;
-    taille = ch.get_taille();
-}*/
 
 // Destructeur
 Montagne:: ~Montagne() {}

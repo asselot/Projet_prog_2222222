@@ -12,9 +12,9 @@ class CubedAir
     // Vitesse d'un cube
     std::array<double, 3> vitesse_cubedair;
 
-    //--------------------------------------------------------------METHODES-------------------------------------------------------------//
-
     public:
+    
+//--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
 
     // Constructeur de cube à vitesse nulle
     CubedAir();
@@ -24,6 +24,8 @@ class CubedAir
 
     // Constructeur par défaut
     ~CubedAir() = default;
+    
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
     // Retourne l'enthalpie en un point donné
     double enthalpie(unsigned int pz, double pas) const;

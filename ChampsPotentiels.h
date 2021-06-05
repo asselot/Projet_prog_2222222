@@ -15,10 +15,11 @@ class ChampsPotentiels : public Boite3D<Potentiel>
     double erreur();
 
     void iteration(const ChaineDeMontagnes& chaine, const double& E = 0.1);
+    
+    
+    public:
 
 //--------------------------------------------------------------CNSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
-
-    public:
 
     // Constructeur du champ à partir des dimensions de la boîte avec initialisation du laplacien
     ChampsPotentiels(unsigned int nox = 30, unsigned int noy = 30, unsigned int noz = 30, double p = 1.0);

@@ -16,14 +16,14 @@ public :
 
 //--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
 
-// Constructeur à partir d'une montagne déjà initialisée et des dimensions de la boîte et d'une montagne
-Systeme (int const&  nx, int const&  ny, int const&  nz, double const&  pas,  Montagne const& M);
+// Constructeur à partir d'un champ et d'une chaine
+Systeme (int const&  nx, int const&  ny, int const&  nz, double const&  pas,  ChaineDeMontagnes const& Ch);
 
 // Constructeur à partir d'une montagne déjà initialisée et des dimensions de la boîte et d'une chaine
 Systeme (int const&  nx, int const&  ny, int const&  nz, double const&  pas,  ChaineDeMontagnes const& Ch);
 
 
-// Construteur à partir d'un autre systeme
+// Construteur à partir d'un autre systeme // a voir...............
 Systeme(const Systeme& systeme) = delete;
 
 // Destructeur de la classe

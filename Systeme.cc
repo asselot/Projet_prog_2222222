@@ -1,33 +1,12 @@
 
+
 #include <iostream>
 #include "Systeme.h"
 #include "Montagne.h"
 
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
+//--------------------------------------------------------------CONSTRUCTEURS-------------------------------------------------------------//
 
-// Méthode dessine_sur() héritée de Dessinable
-void Systeme :: dessine_sur(SupportADessin& a_dessiner)
-{
-a_dessiner.dessine(chaine);
-a_dessiner.dessine(ciel);
-}
-
-
-// Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système
-void Systeme :: demarre (SupportADessin& a_dessiner)
-{
-    champs.resolution(2.2621843e-5, 5000, false, chaine);
-    dessine_sur(a_dessiner);
-    evolue(a_dessiner);
-}
-
-// Fait évoluer le système (surtout nuage?)
-void Systeme ::  evolue (SupportADessin& a_dessiner)
-{
-    dessine_sur(a_dessiner);
-
-}
 
 // Constructeur de Systeme à partir des dimensions de la boîte et d'une montagnes
 Systeme:: Systeme (int const& nx, int const& ny, int const& nz, double const& pas, const Montagne &Ch)
@@ -46,7 +25,30 @@ Systeme:: Systeme (int const&  nx, int const&  ny, int const&  nz, double const&
     ciel.initialise();
 }
 
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
+// Méthode dessine_sur() héritée de Dessinable
+void Systeme :: dessine_sur(SupportADessin& a_dessiner)
+{
+a_dessiner.dessine(chaine);
+// a_dessiner.dessine(ciel);
+}
+
+
+// Démarre modélisation du système : créer un champ de potentiel et un ciel, dessine et fait évoluer le système
+void Systeme :: demarre (SupportADessin& a_dessiner)
+{
+    champs.resolution(2.2621843e-5, 5000, false, chaine);
+    dessine_sur(a_dessiner);
+    evolue(a_dessiner);
+}
+
+// Fait évoluer le système (surtout nuage?)
+void Systeme ::  evolue (SupportADessin& a_dessiner)
+{
+    dessine_sur(a_dessiner);
+
+}
 
 // Fait appel aux opérateurs des différents composants du système
 std::ostream& Systeme :: affiche (std::ostream& sortie) const

@@ -29,6 +29,8 @@ class Montagne : public Dessinable
 
 	public: 
 
+//--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
+
     // Constructeur à partir des coordonnées d'un point, une hauteur et un certain étalement
     Montagne(double const& x = 0, double const& y = 0, double const& h = 0, double const& ox = 0, double const& oy = 0, int const& dim = 30);
 	
@@ -57,7 +59,9 @@ class Montagne : public Dessinable
 
 
 
-// Sous classe de Montagne
+/************************************************************ SOUS CLASSE ChaineDeMontagne ***************************************************************/
+
+
 
  class ChaineDeMontagnes : public Montagne
 
@@ -69,9 +73,9 @@ class Montagne : public Dessinable
 
         unsigned int taille = 0 ;
 
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
         public:
+//--------------------------------------------------------------CONSTRUCTEURS-------------------------------------------------------------//
 
         // Constructeur à partir d'une montagne
         ChaineDeMontagnes(const Montagne& mont);
@@ -82,8 +86,7 @@ class Montagne : public Dessinable
         // Constructeur d'une chaine à partir des élements d'une montagne
         ChaineDeMontagnes(double const& x, double const& y, double const& h, double const& ox, double const& oy, int const& dim);
 
-        // Destructeur
-        virtual ~ChaineDeMontagnes() override;
+//--------------------------------------------------------------METHODES-------------------------------------------------------------------//
 
         // Méthode permettant d'ajouter des montagnes à la chaine
         void set_montagne(Montagne const& montagne);
@@ -101,13 +104,7 @@ class Montagne : public Dessinable
         unsigned int  get_taille() const;
 
 
-
-
     };
-
- /*// Déclaration de l'attribut de classe chaine de montagne
- unsigned int  ChaineDeMontagnes :: taille (0);
- */
 
 
     // Surcharge de << pour la chaine

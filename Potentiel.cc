@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//--------------------------------------------------------------METHODES-------------------------------------------------------------//
+//--------------------------------------------------------------CONSTRUCTEURS-------------------------------------------------------------//
 
 // Constructeur d'un potentiel à partir d'un autre potentiel
 Potentiel::Potentiel(Potentiel const& a_copier)
@@ -17,6 +17,9 @@ Potentiel :: Potentiel(Vecteur2D const& p, Vecteur2D const& l) : poten (p), lapl
 Potentiel :: Potentiel()
     : poten(), laplacien()
 {}
+
+//--------------------------------------------------------------METHODES-------------------------------------------------------------//
+
 
 // Retourne la vitesse des potentiels sous forme de tableau pour chacune des composantes de la vitesse
 array<double, 3> Potentiel:: vitesse_potentiels(const Potentiel& imoins1jk, const Potentiel& ijmoins1k, const Potentiel& ijkmoins1, const Potentiel& iplus1jk, const Potentiel& ijplus1k, const Potentiel& ijkplus1) const

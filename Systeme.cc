@@ -1,30 +1,16 @@
 
 #include <iostream>
 #include "Systeme.h"
+#include "Montagne.h"
 
 //--------------------------------------------------------------METHODES-------------------------------------------------------------//
 
-
-// Surcharge de l'opérateur <<
-std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys)
-{
-     return Sys.affiche(sortie);
-}
-
-// Fait appel aux opérateurs des différents composants du système
-std::ostream& Systeme :: affiche (std::ostream& sortie) const
-{
-    sortie << " Montagnes : " << chaine << std::endl;
-    sortie << " Champs potentiels : " << champs << std::endl;
-    sortie << " Ciel : " << ciel << std::endl;
-    return sortie;
-}
 
 // Méthode dessine_sur() héritée de Dessinable
 void Systeme :: dessine_sur(SupportADessin& a_dessiner)
 {
 a_dessiner.dessine(chaine);
-//a_dessiner.dessine(ciel);
+a_dessiner.dessine(ciel);
 }
 
 
@@ -40,18 +26,39 @@ void Systeme :: demarre (SupportADessin& a_dessiner)
 void Systeme ::  evolue (SupportADessin& a_dessiner)
 {
     dessine_sur(a_dessiner);
-    // pas besoin d'itération sur cubeair -> toutes les méthodes de ciel
 
 }
 
 // Constructeur de Systeme à partir des dimensions de la boîte et d'une montagnes
-Systeme:: Systeme (int const& nx, int const& ny, int const& nz, double const& pas, Montagne const& M)
-    : champs(nx, ny, nz, pas), ciel (nx, ny, nz, pas), chaine (M)
+Systeme:: Systeme (int const& nx, int const& ny, int const& nz, double const& pas, const Montagne &Ch)
+    : champs(nx, ny, nz, pas), ciel(nx, ny, nz, pas), chaine (Ch)
 
 {
-    champs.initialise( Physique :: vinfini, M);
+    champs.initialise( Physique :: vinfini, Ch);
+    ciel.initialise();
+}
 
+// Constructeur à partir d'une montagne déjà initialisée et des dimensions de la boîte et d'une chaine
+Systeme:: Systeme (int const&  nx, int const&  ny, int const&  nz, double const&  pas,  ChaineDeMontagnes const& Ch)
+    :  champs(nx, ny, nz, pas), ciel(nx, ny, nz, pas), chaine(Ch)
+{
+    champs.initialise( Physique :: vinfini, Ch);
+    ciel.initialise();
 }
 
 
 
+// Fait appel aux opérateurs des différents composants du système
+std::ostream& Systeme :: affiche (std::ostream& sortie) const
+{
+    sortie << " Montagnes : " << chaine << std::endl;
+    sortie << " Champs potentiels : " << champs << std::endl;
+    sortie << " Ciel : " << ciel << std::endl;
+    return sortie;
+}
+
+// Surcharge de l'opérateur <<
+std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys)
+{
+     return Sys.affiche(sortie);
+}

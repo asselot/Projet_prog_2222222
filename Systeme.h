@@ -14,6 +14,8 @@ class Systeme : public Dessinable
 
 public :
 
+//--------------------------------------------------------------CONSTRUCTEURS ET DESTRUCTEUR-------------------------------------------------------------//
+
 // Constructeur à partir d'une montagne déjà initialisée et des dimensions de la boîte et d'une montagne
 Systeme (int const&  nx, int const&  ny, int const&  nz, double const&  pas,  Montagne const& M);
 
@@ -41,8 +43,9 @@ void evolue (SupportADessin& a_dessiner);
 // Méthode dessine_sur() héritée de Dessinable
 virtual void dessine_sur(SupportADessin& a_dessiner) override;
 
-// En public pour le graphisme
+//--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 
+// En public pour le graphisme -> faire des getteurs ?
 
 ChampsPotentiels champs;
 Ciel ciel;
@@ -50,6 +53,5 @@ ChaineDeMontagnes chaine;
 
 };
 
-//--------------------------------------------------------------ATTRIBUTS-------------------------------------------------------------//
 
 std::ostream& operator<<(std::ostream& sortie, Systeme const& Sys);

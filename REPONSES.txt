@@ -126,7 +126,19 @@ C'est une méthode virtuelle pure car elle dépend entièrement du type d'élém
 [Question P9.4] Comment représentez vous la classe Systeme ? 
 Expliquez votre conception (attributs, interface, ...).
 
-La classe Systeme représente ce qui compose le système physique à modéliser. Elle doit posséder donc des montagnes, un cie
+La classe Systeme représente ce qui compose le système physique à modéliser. Elle doit posséder donc des montagnes, un ciel et un champs de potentiel pour initialiser celui-ci. Nous avons mis ces attributs sous forme d'attributs privé et donc avons rajouté des getteurs utiles pour la partie graphique.
+
+Note a posteriori : on prend finalement une chaine de montagne à la place d'une montagne simple
+
+La classe systeme permettant de modéliser et dessiner le système, il faut qu'un ojet systeme puisse initialiser ses composants. Ainsi le constructeur prend en paramètre un champs qui : initialise le champs du systeme, grâce au constructer de copie de champs, qui initialise le ciel a des valeurs nulles; et une montagne qui initialise la montagne du systeme.
+Puis dans le coprs du constructeur, on initialise le champs du systeme avec la vitesse au bord et la montagne.
+
+Le ciel ne pouvant être bien initalisé, il faut le faire dans la fonction demarre(). Dans cette méthode, on résolut le champs de potentiel avec les valeurs par défaut. Puis, afin de bien initialiser le ciel, on créer un ciel temporaire initialisé grâce au champs résolut que l'on va ensuite affecter au ciel du systme. Nous avons conscience que cette méthode est très peu optimale et rajoute beaucoup de temps de calcul.
+Enfin cette méthode dessine le systeme en appelant dessine_sur() et le fait évoluer grâce à la méthode evolue()
+
+Cette méthode, permet de faire évoluer le syteme : principalement déplacer les nuages, créer de la pluie... pour ensuite redessiner le systeme.
+
+Enfin nous avons rajouté une méthode affiche() qui affiche le ciel, la montagne et le champ et une surcharge de l'opérateur <<.
 
 
 -------- Semaine 8 -----------------------------------------------------------------------------------------------------------------------------------------------

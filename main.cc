@@ -21,10 +21,10 @@ using namespace std;
 
 
 // Permet d'initialiser autant de montagne dans la chaine
-ChaineDeMontagne initialisation(ChaineDeMontagnes& chaine)
+void initialisation(ChaineDeMontagnes& chaine)
 {
 	
-	string reponse(oui);
+	string reponse(oui); // Réponse de l'utilisateur
 	
 do
  {
@@ -38,7 +38,7 @@ do
 				if ( cin.fail() ) 
 					{ 
 		
-						cout  << " Répondez  oui ou non - attention à la syntaxe - " << end;
+						cout  << " Répondez  oui ou non - attention à la syntaxe - " << end; // Insulte modeste sur l'utilisateur
 						cout << "Opération annulé " << endl;
 		
 						cin.clear();
@@ -53,31 +53,61 @@ do
 						cout << endl;
 		
 					}
-			
-		} while ( not cin.fail());
+		
+		} while ( not cin.fail()); // Tant que le cin n'est pas valable on recommence
 	
 
-	if ( reponse == "oui" ) { Ajouter_montagne(); }		
+	if ( reponse == "oui" ) { Ajouter_montagne(chaine); }	// Si la réponse est oui on ajoute une montagne	
 		
-	else { cout << endl;}
+	else { cout << endl;} 
 		
 	
 	
- } while ( reponse == "oui");
+ } while ( reponse == "oui"); // Tant que l'utilisateur veut des montagnes on en rajoute dans la chaine
+	
 	
 }
 
 // Ajoute une montagne à la chaine
-Ajout_montagne(ChaineDeMontagnes& chaine)
+void Ajout_montagne(ChaineDeMontagnes& chaine)
 
 {
+	Montagne m ( Creation_montagne());
+	
+	chaine.set_montagne(m);
+	
+}
+
+void condition (double& x)
+
+{
+	if ( x < -30) { x = -29; }
+	if ( x > = 30) { x = 29; }
+}
+
+// Créer une chaine de montagne à partir d'une montagne
+ChaineDeMontagne Premiere_montagne()
+{
+  cout << " Ajouter une première montagne - pour initialiser la chaine - " << endl;
+	
+	// Déclare et initialise une montagne
+	Montagne M(Creation_montagne());
+	
+	// Déclare et initialise une chaine grâce à la première montagne
+	ChaineDeMontagne chaine(M);
+	
+	return chaine;
+}
+
+Montagne Creation_montagne()
+{
+	// Demande tous les paramètres de la montagne
+	
 	cout " Entrez les pramètres de la montagne : " << endl;
 	cout << " Le centre coord_x : " ;
 	double x;
 	cin >> x;
-	condition (x); 
-
-	
+	condition (x);  // Vérifie des conditions pour les paramètres de la montagne --> à l'intérieur de la boîte
 	
 	cout << " Le centre coord_y : " ;
 	double y;
@@ -101,24 +131,11 @@ Ajout_montagne(ChaineDeMontagnes& chaine)
 	cin >> ey;
 	condition (ey); 
 	
-
-	Montagne m ( x, y, h, ex, ey);
+        // Créer la montagne à partir des paramètres reçus
+	Montagne m (x, y, h, ex, ey);
 	
-	chaine.set_montagne(m);
+	return m;
 	
-}
-
-void condition (double& x)
-
-{
-	if ( x < -30) { x = -29; }
-	if ( x > = 30) { x = 29; }
-}
-
-ChaineDeMontagne Premiere_montagne()
-{
-  cout << " Ajouter une première montagne - pour initialiser la chaine - " << endl;
-	Ajout_montagne();
 }
 
 int main(int argc, char* argv[])
@@ -127,12 +144,12 @@ int main(int argc, char* argv[])
 
   QApplication a(argc, argv);
 
-  ChaineDeMontagne dessin1;
-  initialisation (dessin1);
+  ChaineDeMontagne dessin (Premiere_montagne());
+  initialisation (dessin);
 
-  ChampsPotentiels ch (30, 30, 30, 1, dessin1);
+  ChampsPotentiels ch (30, 30, 30, 1, dessin);
 
-  GLWidget w(ch, dessin1);
+  GLWidget w(ch, dessin);
 
   w.show();
   return a.exec();
